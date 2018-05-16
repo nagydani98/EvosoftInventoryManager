@@ -40,22 +40,22 @@ public class CostumerParser {
 			
 			for(int i = 0; i < costumer.size(); i++) {
 				
-				Costumer costumer = costumer.get(i);
+				Costumer costumers = costumer.get(i);
 				
 				
 				Element costumersElement = doc.createElement("Costumer");
 				costumerElement.appendChild(costumerElement);
 				
 				
-				costumerElement.setAttribute("Name", costumer.getName());
+				costumerElement.setAttribute("Name", costumers.getName());
 				
-				costumerElement.setAttribute("Tax", Integer.toString(costumer.getTax()));
+				costumerElement.setAttribute("Tax", Integer.toString(costumers.getTax()));
 				
-				costumerElement.setAttribute("PostCode", Integer.toString(costumer.getPostCode()));
+				costumerElement.setAttribute("PostCode", Integer.toString(costumers.getPostCode()));
 				
-				costumerElement.setAttribute("ShopNumber", Integer.toString(costumer.getShopNumber()));
+				costumerElement.setAttribute("ShopNumber", Integer.toString(costumers.getShopNumber()));
 				
-				costumerElement.setAttribute("Email", costumer.getEmail());
+				costumerElement.setAttribute("Email", costumers.getEmail());
 				
 				
 			}
@@ -92,13 +92,13 @@ public class CostumerParser {
 				Document doc = docBuilder.parse(file);
 				
 				
-				Element peopleElement = doc.getDocumentElement();
+				Element costumerElement = doc.getDocumentElement();
 				
 				
 				for(int i = 0; i < costumerElement.getChildNodes().getLength(); i++) {
 					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Costumer")) {
 						
-						Element costumerElement = (Element) costumerElement.getChildNodes().item(i);
+						Element costumersElement = (Element) costumerElement.getChildNodes().item(i);
 						
 						
 						String name = costumerElement.getAttribute("Name");

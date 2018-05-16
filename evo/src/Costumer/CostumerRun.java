@@ -14,15 +14,15 @@ public class CostumerRun {
 		
 		boolean loadSuccess = xmlParser.tryToLoad();
 		if(loadSuccess) {
-			// ha sikeres a beolvasas akkor kiirjuk a szemelytt
+			
 			costumer = xmlParser.getLoadedPeople();
 			System.out.println("A xml beolvas·sa sikeres volt.");
 			System.out.println("Ezek a szemÈlyek voltak elmentve:");
 			for(int i = 0; i < costumer.size(); i++) {
-				// Az i. szemely objektuma.
+				
 				Costumer person = costumer.get(i);
 				
-				// Megjelenitjuk az i. szemÈly adatait.
+				
 				System.out.println(String.format("%d. %s: %d", i, person.getName(), person.getTax()));
 			}
 		}
@@ -35,13 +35,25 @@ public class CostumerRun {
 		
 	
 		Scanner scanner = new Scanner(System.in);
+		
 		System.out.print("⁄j name: ");
 		String newName = scanner.nextLine();
+		
 		System.out.print("⁄j tax: ");
-		int newAge = scanner.nextInt();
+		int newTax = scanner.nextInt();
+		
+		System.out.print("⁄j postCode: ");
+		int newPostCode = scanner.nextInt();
+		
+		System.out.print("⁄j shopNumber: ");
+		int newShopNumber = scanner.nextInt();
+		
+		System.out.print("⁄j email: ");
+		String newEmail = scanner.nextLine();
+		
 		scanner.close();
 		
-		Costumer newCostumer = new Costumer(newName, newTax);
+		Costumer newCostumer = new Costumer(newName, newTax, newPostCode, newShopNumber, newEmail);
 		costumer.add(newCostumer);
 		
 		boolean saveSuccess = xmlParser.tryToSave(costumer);

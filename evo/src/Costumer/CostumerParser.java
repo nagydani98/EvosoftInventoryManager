@@ -43,14 +43,21 @@ public class CostumerParser {
 				Costumer costumer = costumer.get(i);
 				
 				
-				Element costumerElement = doc.createElement("Costumer");
+				Element costumersElement = doc.createElement("Costumer");
 				costumerElement.appendChild(costumerElement);
 				
 				
 				costumerElement.setAttribute("Name", costumer.getName());
 				
-				
 				costumerElement.setAttribute("Tax", Integer.toString(costumer.getTax()));
+				
+				costumerElement.setAttribute("PostCode", Integer.toString(costumer.getPostCode()));
+				
+				costumerElement.setAttribute("ShopNumber", Integer.toString(costumer.getShopNumber()));
+				
+				costumerElement.setAttribute("Email", costumer.getEmail());
+				
+				
 			}
 			
 			
@@ -98,8 +105,14 @@ public class CostumerParser {
 						
 						int tax = Integer.parseInt(costumerElement.getAttribute("Tax"));
 						
+						int postCode = Integer.parseInt(costumerElement.getAttribute("PostCode"));
 						
-						Costumer costumer = new Costumer(name, tax);
+						int shopNumber = Integer.parseInt(costumerElement.getAttribute("ShopNumber"));
+						
+						String email = costumerElement.getAttribute("Email");
+						
+						
+						Costumer costumer = new Costumer(name, tax, postCode, shopNumber, email);
 						
 						
 						loadedCostumer.add(costumer);

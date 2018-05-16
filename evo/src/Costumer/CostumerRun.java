@@ -16,8 +16,8 @@ public class CostumerRun {
 		if(loadSuccess) {
 			
 			costumer = xmlParser.getLoadedPeople();
-			System.out.println("A xml beolvas·sa sikeres volt.");
-			System.out.println("Ezek a szemÈlyek voltak elmentve:");
+			System.out.println("A xml beolvasasa sikeres volt.");
+			System.out.println("Ezek a szemelyek voltak elmentve:");
 			for(int i = 0; i < costumer.size(); i++) {
 				
 				Costumer person = costumer.get(i);

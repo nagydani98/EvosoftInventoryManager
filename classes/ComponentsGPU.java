@@ -9,6 +9,9 @@ public class ComponentsGPU extends ComponentsPC{
 	private int bus_memory;
 	private String bus_type;
 	
+	static {
+		type = "gpu";
+	}
 	
 	public ComponentsGPU(String name, String producer, int quantity, int price, int clock, int ram, int ram_speed, int bus_memory, String bus_type) {
 		super(name, producer, quantity, price);
@@ -17,11 +20,10 @@ public class ComponentsGPU extends ComponentsPC{
 		this.ram_speed = ram_speed;
 		this.bus_memory = bus_memory;
 		this.bus_type = bus_type;
-		type="gpu";
 	}
 	
 	public ComponentsGPU() {
-		type="gpu";
+		
 	}
 	
 	@Override
@@ -33,7 +35,6 @@ public class ComponentsGPU extends ComponentsPC{
 			System.out.println("Memória sebesség: " +Integer.parseInt(eElement.getElementsByTagName("ram_speed").item(0).getTextContent()));
 			System.out.println("Memória bussz sebessége: " +Integer.parseInt(eElement.getElementsByTagName("bus_memory").item(0).getTextContent()));
 			System.out.println("Busz tipusa: " +eElement.getElementsByTagName("bus_type").item(0).getTextContent());
-			System.out.println("\n");
 		}
 	}
 }

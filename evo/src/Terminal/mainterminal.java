@@ -15,7 +15,7 @@ public class mainterminal {
 		menuOfItemsAndCusomers();
 	}
 	
-	//ellenõrzötten beolvasó metódusok, menu interakcióhoz
+	//ellenõrzötten beolvasó metódusok, menu interakcióhoz, vagy egyebekhez
 	public static int readInt() {
 		int num = 0;
 		InputStreamReader inputStream = new InputStreamReader(System.in);
@@ -35,42 +35,91 @@ public class mainterminal {
 	//menu metódusok
 	public static void menuOfItemsAndCusomers() {
 		int menunumber=0;
-		System.out.print("1. Customers\n2. Items\n Type in the menu's number you wish to enter:");
+		boolean menustate = true;
+		
+		do {
+		System.out.print("1. Customers\n2. Items\n3. Back\n Type in the menu's number you wish to enter:");
 		menunumber = readInt();
 		switch (menunumber) {
 		case 1:
-			//menuOfCustomers();
+			menuOfCustomers();
+			break;
 		case 2:
 			menuOfItems();
+			break;
+		case 3:
+			menustate = false;
+			break;
 		default:
 			System.out.println("\nUnrecognised input");
-			menuOfItemsAndCusomers();
 		}
+		}while(menustate);
 	}
 	
 	public static void menuOfItems() {
 		int menunumber=0;
+		boolean menustate = true;
+		
+		do {
 		System.out.print(
 				"1. List items\n2. Search\n3. Create item\n4. Delete item\n5. Back to main menu\n6. Back\n Type in the operation's number you wish to perform:");
 		menunumber = readInt();
 		switch (menunumber) {
 		case 1:
 			//print item list
-			menuOfItems();
+			break;
 		case 2:
 			//search for item
+			break;
 		case 3:
 			//create item
+			break;
 		case 4:
-			
+			//delete item
+			break;
 		case 5:
-			menuOfItemsAndCusomers();
+			menustate = false;
+			break;
 		case 6:
-			menuOfItemsAndCusomers();
+			menustate = false;
+			break;
 		default:
 			System.out.println("\nUnrecognised input");
-			menuOfItems();
 		}
+		}while(menustate);
+	}
+	
+	public static void menuOfCustomers() {
+		int menunumber=0;
+		boolean menustate = true;
+		
+		do {
+		System.out.print(
+				"1. List cusomers\n2. Search for customer\n3. Create new cusomter\n4. Delete customer\n5. Back to main menu\n6. Back\n Type in the operation's number you wish to perform:");
+		menunumber = readInt();
+		switch (menunumber) {
+		case 1:
+			//print customer list
+			break;
+		case 2:
+			//search for customer
+			break;
+		case 3:
+			//create customer
+			break;
+		case 4:
+			//delete customer
+			break;
+		case 5:
+			menustate = false;
+			break;
+		case 6:
+			menustate = false;
+			break;
+		default:
+			System.out.println("\nUnrecognised input");
+		}
+		}while(menustate);
 	}
 }
 

@@ -8,10 +8,6 @@ public class ComponentsCPU extends ComponentsPC{
 	private int cpu_cores;
 	private int manufactorytech;
 	
-	
-	static {
-		type = "cpu";
-	}
 
 	public ComponentsCPU(String name, String producer, int quantity, int price,int clock, String socket,int cpu_cores, int manufactorytech) {
 		super(name, producer, quantity, price);
@@ -19,10 +15,11 @@ public class ComponentsCPU extends ComponentsPC{
 		this.socket = socket;
 		this.cpu_cores = cpu_cores;
 		this.manufactorytech = manufactorytech;
+		type="cpu";
 	}
 	
 	public ComponentsCPU() {
-		
+		type="cpu";
 	}
 
 	@Override

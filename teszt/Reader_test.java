@@ -9,7 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -17,26 +17,14 @@ import org.xml.sax.SAXException;
 
 import evo.classes.*;
 
-
 public class Reader_test {
-	public static org.w3c.dom.Document tryOpenTheFile() throws ParserConfigurationException, SAXException, IOException {
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = null;
-		org.w3c.dom.Document doc = null;		//valamiért nem tudja elérni az ut vonalat ha nincs benne a "org.w3c.dom.Document". Feljebb mutatja, hogy nem használom az importot, passz nem tuduom miért.
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-			doc = dBuilder.parse(Products.getFileLocation());
-			doc.getDocumentElement().normalize();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return doc;
-	}
+	//megnyitja a documentumot, ha nem tudja akkor dob Exception-nokat
 	
+	//Kiir egy elemetet, amit meghatározunk
 	public static void writeDownOnePartOfTheList() {
 		org.w3c.dom.Document doc = null;
 		try {
-			doc = tryOpenTheFile();
+			doc = Products.tryOpenTheFile();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,11 +42,12 @@ public class Reader_test {
 			}
 		}
 	}
-
+	
+	//Kiirja sorbarendezés nélkül az összes elemet
 	public static void whiteDownWholeStuff() {
 		org.w3c.dom.Document doc = null;
 		try {
-			doc = tryOpenTheFile();
+			doc = Products.tryOpenTheFile();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

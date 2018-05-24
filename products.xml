@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Products>
+ <PC_component>
+   <item type="cpu">
+    <name>Ryzen 5 1600</name>
+	<producer>AMD</producer>
+	<quantity>1</quantity>
+	<price>46000</price>
+    <clock>3200</clock>
+    <socket>AM4</socket>
+	<cpu_cores>6</cpu_cores>
+    <manufactorytech>14</manufactorytech>
+   </item>
+ </PC_component>
+</Products>

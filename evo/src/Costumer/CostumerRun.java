@@ -3,9 +3,11 @@ package Costumer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.io.*;
 
 public class CostumerRun {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		System.out.println("Start");
 		
 		CostumerParser xmlParser = new CostumerParser();
@@ -36,19 +38,60 @@ public class CostumerRun {
 	
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("⁄j name: ");
+		System.out.print("name: ");
 		String newName = scanner.nextLine();
 		
-		System.out.print("⁄j tax: ");
-		int newTax = scanner.nextInt();
 		
-		System.out.print("⁄j postCode: ");
-		int newPostCode = scanner.nextInt();
+		int newTax;
+		  System.out.print("tax: ");
+		  do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          newTax = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Couldn't parse input, please try again");
+		      }
+		  }
+		  while (true);
 		
-		System.out.print("⁄j shopNumber: ");
-		int newShopNumber = scanner.nextInt();
+		  int newPostCode;
+		  System.out.print("post code: ");
+		  do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          newPostCode = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Couldn't parse input, please try again");
+		      }
+		  }
+		  while (true);
+		  
+		  int newShopNumber;
+		  System.out.print("shop number: ");
+		  do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          newShopNumber = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Couldn't parse input, please try again");
+		      }
+		  }
+		  while (true);
+
 		
-		System.out.print("⁄j email: ");
+		System.out.print("email: ");
 		String newEmail = scanner.nextLine();
 		
 		scanner.close();

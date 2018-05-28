@@ -32,7 +32,7 @@ public class CostumerParser {
 			Document doc = docBuilder.newDocument();
 			
 			
-			Element costumerElement = doc.createElement("Costumer");
+			Element costumerElement = doc.createElement("Users"); // duplán volt létrehozva element customers névvel, itt
 			
 			
 			doc.appendChild(costumerElement);
@@ -43,19 +43,19 @@ public class CostumerParser {
 				Costumer costumers = costumer.get(i);
 				
 				
-				Element costumersElement = doc.createElement("Costumer");
-				costumerElement.appendChild(costumerElement);
+				Element costumersElement = doc.createElement("Customer"); // és itt, így átneveztem az elõzõt
+				costumerElement.appendChild(costumersElement);
 				
 				
-				costumerElement.setAttribute("Name", costumers.getName());
+				costumersElement.setAttribute("Name", costumers.getName());
 				
-				costumerElement.setAttribute("Tax", Integer.toString(costumers.getTax()));
+				costumersElement.setAttribute("Tax", Integer.toString(costumers.getTax())); 
 				
-				costumerElement.setAttribute("PostCode", Integer.toString(costumers.getPostCode()));
+				costumersElement.setAttribute("PostCode", Integer.toString(costumers.getPostCode()));
 				
-				costumerElement.setAttribute("ShopNumber", Integer.toString(costumers.getShopNumber()));
+				costumersElement.setAttribute("ShopNumber", Integer.toString(costumers.getShopNumber()));
 				
-				costumerElement.setAttribute("Email", costumers.getEmail());
+				costumersElement.setAttribute("Email", costumers.getEmail());
 				
 				
 			}
@@ -96,20 +96,20 @@ public class CostumerParser {
 				
 				
 				for(int i = 0; i < costumerElement.getChildNodes().getLength(); i++) {
-					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Costumer")) {
+					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasandó xml Element nevével
 						
 						Element costumersElement = (Element) costumerElement.getChildNodes().item(i);
 						
 						
-						String name = costumerElement.getAttribute("Name");
+						String name = costumersElement.getAttribute("Name");
 						
-						int tax = Integer.parseInt(costumerElement.getAttribute("Tax"));
+						int tax = Integer.parseInt(costumersElement.getAttribute("Tax"));
 						
-						int postCode = Integer.parseInt(costumerElement.getAttribute("PostCode"));
+						int postCode = Integer.parseInt(costumersElement.getAttribute("PostCode"));
 						
-						int shopNumber = Integer.parseInt(costumerElement.getAttribute("ShopNumber"));
+						int shopNumber = Integer.parseInt(costumersElement.getAttribute("ShopNumber"));
 						
-						String email = costumerElement.getAttribute("Email");
+						String email = costumersElement.getAttribute("Email");
 						
 						
 						Costumer costumer = new Costumer(name, tax, postCode, shopNumber, email);
@@ -134,5 +134,12 @@ public class CostumerParser {
 	
 	public List<Costumer> getLoadedPeople() {
 		return loadedCostumer;
+	}
+	
+	public void printCostumerList() { //automatikusan kiírja az elmentett neveket és adószámot
+		if(!this.loadedCostumer.isEmpty())
+			for (int i = 0; i < this.loadedCostumer.size(); i++) {
+				System.out.println(String.format("%d. %s: %d", i, this.loadedCostumer.get(i).getName(), this.loadedCostumer.get(i).getTax()));
+			}
 	}
 }

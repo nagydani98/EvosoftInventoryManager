@@ -20,13 +20,8 @@ public class CostumerRun {
 			costumer = xmlParser.getLoadedPeople();
 			System.out.println("A xml beolvasasa sikeres volt.");
 			System.out.println("Ezek a szemelyek voltak elmentve:");
-			for(int i = 0; i < costumer.size(); i++) {
-				
-				Costumer person = costumer.get(i);
-				
-				
-				System.out.println(String.format("%d. %s: %d", i, person.getName(), person.getTax()));
-			}
+			
+			xmlParser.printCostumerList();
 		}
 		else {
 			System.out.println("SOMETHING IS WRONG");

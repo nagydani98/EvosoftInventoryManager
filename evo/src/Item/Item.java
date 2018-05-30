@@ -1,6 +1,6 @@
 package Item;
 
 public class Item {
-	private String name2;
+	private String name;
 	private int price;
 }

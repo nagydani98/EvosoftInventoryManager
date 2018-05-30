@@ -139,7 +139,7 @@ public class CostumerParser {
 	public void printCostumerList() { //automatikusan kiírja az elmentett neveket és adószámot
 		if(!this.loadedCostumer.isEmpty())
 			for (int i = 0; i < this.loadedCostumer.size(); i++) {
-				System.out.println(String.format("%d. %s: %d", i, this.loadedCostumer.get(i).getName(), this.loadedCostumer.get(i).getTax()));
+				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCostumer.get(i).getName(), this.loadedCostumer.get(i).getTax()));
 			}
 	}
 }

@@ -17,6 +17,9 @@ public class Costumer {
 		this.email = email;
 	}
 	
+	public Costumer() {
+		
+	}
 	
 	public String toString() {
 		return "Name:" + name + ", Tax:" + tax + ", Post code:" + postCode + ", Shop number:" + shopNumber+ ", Email:" + email;

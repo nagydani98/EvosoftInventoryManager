@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -141,5 +142,24 @@ public class CostumerParser {
 			for (int i = 0; i < this.loadedCostumer.size(); i++) {
 				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCostumer.get(i).getName(), this.loadedCostumer.get(i).getTax()));
 			}
+	}
+	
+	//az itt lévõ mindkét keresõmetódust még lehet tovább gondolni, pl partial matchekkel, vagy whitespace karakterek ignorálásávla, toLowercase-el stb.
+	
+	public List<Costumer> findCostumers(String name) {
+		List<Costumer> foundCostumersList = new ArrayList<Costumer>();
+		for (int i = 0; i < loadedCostumer.size(); i++) {
+			if(loadedCostumer.get(i).getName().equals(name))
+				foundCostumersList.add(loadedCostumer.get(i));
+		}
+		return foundCostumersList;
+	}
+	
+	public void deleteCustomer(Costumer toDel) {
+		for (int i = 0; i < loadedCostumer.size(); i++) {
+			if(loadedCostumer.get(i).equals(toDel))
+				loadedCostumer.remove(i);
+		}
+		
 	}
 }

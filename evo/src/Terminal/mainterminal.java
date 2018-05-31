@@ -4,6 +4,8 @@ import Costumer.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class mainterminal {
@@ -28,6 +30,21 @@ public class mainterminal {
 				unsuccessful = false;
 			} catch (NumberFormatException | IOException e) {
 			}
+		} while (unsuccessful);
+		return num;
+	}
+	
+	public static int readIntInRange(int floor, int ceiling) { //a delete funkcióhoz, hogy a megadott sorszám lista méretén belül van-e
+		int num = -1;
+		boolean unsuccessful = true;
+		
+		do {
+			
+				num = readInt();
+				if(num <= ceiling && num >= floor)
+					unsuccessful = false;
+				else System.out.println("Invalid input");
+				
 		} while (unsuccessful);
 		return num;
 	}
@@ -99,7 +116,7 @@ public class mainterminal {
 				System.out.println("Error loading xml, perhaps the file does not exist");
 				
 			System.out.print(
-				"\n1. List cusomers\n2. Search for customer\n3. Create new cusomter\n4. Delete customer\n5. Back to main menu\n6. Back\n Type in the operation's number you wish to perform:");
+				"\n1. List cusomers\n2. Search for customer\n3. Create new customer\n4. Delete customer\n5. Back to main menu\n6. Back\n Type in the operation's number you wish to perform:");
 		menunumber = readInt();
 		switch (menunumber) {
 		
@@ -110,15 +127,26 @@ public class mainterminal {
 		
 		
 		case 2:
-			//search for customer
+			System.out.println("\nPlease provide a name to search for:");
+			Scanner scanner2 = new Scanner(System.in); 
+			String name2 = scanner2.nextLine();
+			
+			List<Costumer> foundCostumers= parser.findCostumers(name2);
+			System.out.println("Customers with that name:");
+			if(!foundCostumers.isEmpty()) {
+				for (Costumer costumer : foundCostumers) {
+				System.out.println(costumer.toString());
+				}
+			}
+			else System.out.println("There is no customer with that name");
 			break;
 			
 			
 		case 3:
-			Scanner scanner = new Scanner(System.in); 
+			Scanner scanner3 = new Scanner(System.in); 
 			System.out.println("Registering new customer, please provide a name:"); //ez így még placeholder, hisz meg kell majd valósítanunk ellenõrzéseket,
 																					//hogy pl az emailt megfelelõ formátumban adják meg
-			String name = scanner.nextLine();
+			String name3 = scanner3.nextLine();
 			
 			System.out.println("Provide a taxnumber:");
 			int tax = readInt();
@@ -130,19 +158,41 @@ public class mainterminal {
 			int shopnumber = readInt();
 			
 			System.out.println("Provide an e-mail");
-			String email = scanner.nextLine();
+			String email = scanner3.nextLine();
 			
-			Costumer customer = new Costumer(name, tax, postcode, shopnumber, email);
+			Costumer customer = new Costumer(name3, tax, postcode, shopnumber, email);
 			
 			parser.getLoadedPeople().add(customer);
 			
-			
+			//scanner3.close(); ez az utasítás gondot okoz valamiért, majd demonstrálom
 			break;
 		
 		
 		case 4:
-			//delete customer
+			
+			System.out.println("\nPlease provide the customer's name which you wish to delete:");
+			Scanner scanner4 = new Scanner(System.in); 
+			String name4 = scanner4.nextLine();
+			
+			List<Costumer> costumersToDel= parser.findCostumers(name4); //megtalálja az öszes customert ezzel a névvel, eltárolja listában
+			
+			if(!costumersToDel.isEmpty() && costumersToDel.size() > 1) { //ha több, mint egy ilyen nevû ember van
+				System.out.println("Customers with that name:");
+				for (int i = 0; i < costumersToDel.size(); i++) {
+					System.out.println(String.format("%d. %s", i+1, costumersToDel.get(i).toString())); //kiírja a teljes adataikat
+				}
+				System.out.println("Please provide the number of the customer you wish to delete:"); //megkér, hogy írjam be a sorzsámát annak, amelyiket törölném
+				int num = readIntInRange(0, costumersToDel.size());
+				parser.deleteCustomer(costumersToDel.get(num-1));
+			}
+			else if(costumersToDel.size() == 1) { 
+				parser.deleteCustomer(costumersToDel.get(0));
+				break;
+			}
+			else System.out.println("There is no customer with that name");
 			break;
+		
+		
 		case 5:
 			menustate = false;
 			break;

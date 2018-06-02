@@ -49,7 +49,7 @@ public class DeleteXmlElement {
 	   </item>
 	 </PC_component>
 	</Products>
-	*/
+	*//*
 	public static void main(String[] args) {
 		try {
 			deleteNoteFromTheXml("Ryzen 5 1600", "item", "name");
@@ -57,5 +57,5 @@ public class DeleteXmlElement {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

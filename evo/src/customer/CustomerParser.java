@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,9 +21,9 @@ import org.xml.sax.SAXException;
 public class CustomerParser {
 	
 	private String filePath = "costumer.xml";
-	private List<Customer> loadedCostumer = new ArrayList<Customer>();
+	private List<Customer> loadedCustomer = new ArrayList<Customer>();
 	
-	public boolean tryToSave(List<Customer> costumer) {
+	public boolean tryToSave(List<Customer> customer) {
 		try {
 			
 			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -33,30 +31,30 @@ public class CustomerParser {
 			Document doc = docBuilder.newDocument();
 			
 			
-			Element costumerElement = doc.createElement("Users"); // dupl�n volt l�trehozva element customers n�vvel, itt
+			Element customerElement = doc.createElement("Users"); // dupl�n volt l�trehozva element customers n�vvel, itt
 			
 			
-			doc.appendChild(costumerElement);
+			doc.appendChild(customerElement);
 			
 			
-			for(int i = 0; i < costumer.size(); i++) {
+			for(int i = 0; i < customer.size(); i++) {
 				
-				Customer costumers = costumer.get(i);
-				
-				
-				Element costumersElement = doc.createElement("Customer"); // �s itt, �gy �tneveztem az el�z�t
-				costumerElement.appendChild(costumersElement);
+				Customer costumers = customer.get(i);
 				
 				
-				costumersElement.setAttribute("Name", costumers.getName());
+				Element customersElement = doc.createElement("Customer"); // �s itt, �gy �tneveztem az el�z�t
+				customerElement.appendChild(customersElement);
 				
-				costumersElement.setAttribute("Tax", Integer.toString(costumers.getTax())); 
 				
-				costumersElement.setAttribute("PostCode", Integer.toString(costumers.getPostCode()));
+				customersElement.setAttribute("Name", costumers.getName());
 				
-				costumersElement.setAttribute("ShopNumber", Integer.toString(costumers.getShopNumber()));
+				customersElement.setAttribute("Tax", Integer.toString(costumers.getTax())); 
 				
-				costumersElement.setAttribute("Email", costumers.getEmail());
+				customersElement.setAttribute("PostCode", Integer.toString(costumers.getPostCode()));
+				
+				customersElement.setAttribute("ShopNumber", Integer.toString(costumers.getShopNumber()));
+				
+				customersElement.setAttribute("Email", costumers.getEmail());
 				
 				
 			}
@@ -82,7 +80,7 @@ public class CustomerParser {
 	public boolean tryToLoad() {
 		try {
 			
-			loadedCostumer.clear();
+			loadedCustomer.clear();
 			
 			
 			File file = new File(filePath);
@@ -99,24 +97,24 @@ public class CustomerParser {
 				for(int i = 0; i < costumerElement.getChildNodes().getLength(); i++) {
 					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasand� xml Element nev�vel
 						
-						Element costumersElement = (Element) costumerElement.getChildNodes().item(i);
+						Element customersElement = (Element) costumerElement.getChildNodes().item(i);
 						
 						
-						String name = costumersElement.getAttribute("Name");
+						String name = customersElement.getAttribute("Name");
 						
-						int tax = Integer.parseInt(costumersElement.getAttribute("Tax"));
+						int tax = Integer.parseInt(customersElement.getAttribute("Tax"));
 						
-						int postCode = Integer.parseInt(costumersElement.getAttribute("PostCode"));
+						int postCode = Integer.parseInt(customersElement.getAttribute("PostCode"));
 						
-						int shopNumber = Integer.parseInt(costumersElement.getAttribute("ShopNumber"));
+						int shopNumber = Integer.parseInt(customersElement.getAttribute("ShopNumber"));
 						
-						String email = costumersElement.getAttribute("Email");
-						
-						
-						Customer costumer = new Customer(name, tax, postCode, shopNumber, email);
+						String email = customersElement.getAttribute("Email");
 						
 						
-						loadedCostumer.add(costumer);
+						Customer customer = new Customer(name, tax, postCode, shopNumber, email);
+						
+						
+						loadedCustomer.add(customer);
 					}
 				}
 				
@@ -134,13 +132,13 @@ public class CustomerParser {
 	}
 	
 	public List<Customer> getLoadedPeople() {
-		return loadedCostumer;
+		return loadedCustomer;
 	}
 	
-	public void printCostumerList() { //automatikusan ki�rja az elmentett neveket �s ad�sz�mot
-		if(!this.loadedCostumer.isEmpty())
-			for (int i = 0; i < this.loadedCostumer.size(); i++) {
-				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCostumer.get(i).getName(), this.loadedCostumer.get(i).getTax()));
+	public void printCustomerList() { //automatikusan ki�rja az elmentett neveket �s ad�sz�mot
+		if(!this.loadedCustomer.isEmpty())
+			for (int i = 0; i < this.loadedCustomer.size(); i++) {
+				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCustomer.get(i).getName(), this.loadedCustomer.get(i).getTax()));
 			}
 	}
 	
@@ -148,17 +146,17 @@ public class CustomerParser {
 	
 	public List<Customer> findCostumers(String name) {
 		List<Customer> foundCostumersList = new ArrayList<Customer>();
-		for (int i = 0; i < loadedCostumer.size(); i++) {
-			if(loadedCostumer.get(i).getName().equals(name))
-				foundCostumersList.add(loadedCostumer.get(i));
+		for (int i = 0; i < loadedCustomer.size(); i++) {
+			if(loadedCustomer.get(i).getName().equals(name))
+				foundCostumersList.add(loadedCustomer.get(i));
 		}
 		return foundCostumersList;
 	}
 	
 	public void deleteCustomer(Customer toDel) {
-		for (int i = 0; i < loadedCostumer.size(); i++) {
-			if(loadedCostumer.get(i).equals(toDel))
-				loadedCostumer.remove(i);
+		for (int i = 0; i < loadedCustomer.size(); i++) {
+			if(loadedCustomer.get(i).equals(toDel))
+				loadedCustomer.remove(i);
 		}
 		
 	}

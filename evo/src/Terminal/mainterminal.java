@@ -123,7 +123,7 @@ public class mainterminal {
 		
 		
 		case 1:
-			parser.printCostumerList();
+			parser.printCustomerList();
 			break;
 		
 		
@@ -132,11 +132,11 @@ public class mainterminal {
 			Scanner scanner2 = new Scanner(System.in); 
 			String name2 = scanner2.nextLine();
 			
-			List<Customer> foundCostumers= parser.findCostumers(name2);
+			List<Customer> foundCustomers= parser.findCostumers(name2);
 			System.out.println("Customers with that name:");
-			if(!foundCostumers.isEmpty()) {
-				for (Customer costumer : foundCostumers) {
-				System.out.println(costumer.toString());
+			if(!foundCustomers.isEmpty()) {
+				for (Customer customer : foundCustomers) {
+				System.out.println(customer.toString());
 				}
 			}
 			else System.out.println("There is no customer with that name");
@@ -175,19 +175,19 @@ public class mainterminal {
 			Scanner scanner4 = new Scanner(System.in); 
 			String name4 = scanner4.nextLine();
 			
-			List<Customer> costumersToDel= parser.findCostumers(name4); //megtal�lja az �szes customert ezzel a n�vvel, elt�rolja list�ban
+			List<Customer> customersToDel= parser.findCostumers(name4); //megtal�lja az �szes customert ezzel a n�vvel, elt�rolja list�ban
 			
-			if(!costumersToDel.isEmpty() && costumersToDel.size() > 1) { //ha t�bb, mint egy ilyen nev� ember van
+			if(!customersToDel.isEmpty() && customersToDel.size() > 1) { //ha t�bb, mint egy ilyen nev� ember van
 				System.out.println("Customers with that name:");
-				for (int i = 0; i < costumersToDel.size(); i++) {
-					System.out.println(String.format("%d. %s", i+1, costumersToDel.get(i).toString())); //ki�rja a teljes adataikat
+				for (int i = 0; i < customersToDel.size(); i++) {
+					System.out.println(String.format("%d. %s", i+1, customersToDel.get(i).toString())); //ki�rja a teljes adataikat
 				}
 				System.out.println("Please provide the number of the customer you wish to delete:"); //megk�r, hogy �rjam be a sorzs�m�t annak, amelyiket t�r�ln�m
-				int num = readIntInRange(0, costumersToDel.size());
-				parser.deleteCustomer(costumersToDel.get(num-1));
+				int num = readIntInRange(0, customersToDel.size());
+				parser.deleteCustomer(customersToDel.get(num-1));
 			}
-			else if(costumersToDel.size() == 1) { 
-				parser.deleteCustomer(costumersToDel.get(0));
+			else if(customersToDel.size() == 1) { 
+				parser.deleteCustomer(customersToDel.get(0));
 				break;
 			}
 			else System.out.println("There is no customer with that name");

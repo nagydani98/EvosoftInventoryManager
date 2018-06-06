@@ -20,7 +20,7 @@ import org.xml.sax.SAXException;
 
 public class CustomerParser {
 	
-	private String filePath = "costumer.xml";
+	private String filePath = "customer.xml";
 	private List<Customer> loadedCustomer = new ArrayList<Customer>();
 	
 	public boolean tryToSave(List<Customer> customer) {
@@ -39,22 +39,22 @@ public class CustomerParser {
 			
 			for(int i = 0; i < customer.size(); i++) {
 				
-				Customer costumers = customer.get(i);
+				Customer customers = customer.get(i);
 				
 				
 				Element customersElement = doc.createElement("Customer"); // �s itt, �gy �tneveztem az el�z�t
 				customerElement.appendChild(customersElement);
 				
 				
-				customersElement.setAttribute("Name", costumers.getName());
+				customersElement.setAttribute("Name", customers.getName());
 				
-				customersElement.setAttribute("Tax", Integer.toString(costumers.getTax())); 
+				customersElement.setAttribute("Tax", Integer.toString(customers.getTax())); 
 				
-				customersElement.setAttribute("PostCode", Integer.toString(costumers.getPostCode()));
+				customersElement.setAttribute("PostCode", Integer.toString(customers.getPostCode()));
 				
-				customersElement.setAttribute("ShopNumber", Integer.toString(costumers.getShopNumber()));
+				customersElement.setAttribute("ShopNumber", Integer.toString(customers.getShopNumber()));
 				
-				customersElement.setAttribute("Email", costumers.getEmail());
+				customersElement.setAttribute("Email", customers.getEmail());
 				
 				
 			}
@@ -91,13 +91,13 @@ public class CustomerParser {
 				Document doc = docBuilder.parse(file);
 				
 				
-				Element costumerElement = doc.getDocumentElement();
+				Element customerElement = doc.getDocumentElement();
 				
 				
-				for(int i = 0; i < costumerElement.getChildNodes().getLength(); i++) {
-					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasand� xml Element nev�vel
+				for(int i = 0; i < customerElement.getChildNodes().getLength(); i++) {
+					if(customerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasand� xml Element nev�vel
 						
-						Element customersElement = (Element) costumerElement.getChildNodes().item(i);
+						Element customersElement = (Element) customerElement.getChildNodes().item(i);
 						
 						
 						String name = customersElement.getAttribute("Name");
@@ -145,12 +145,12 @@ public class CustomerParser {
 	//az itt l�v� mindk�t keres�met�dust m�g lehet tov�bb gondolni, pl partial matchekkel, vagy whitespace karakterek ignor�l�s�vla, toLowercase-el stb.
 	
 	public List<Customer> findCostumers(String name) {
-		List<Customer> foundCostumersList = new ArrayList<Customer>();
+		List<Customer> foundCustomersList = new ArrayList<Customer>();
 		for (int i = 0; i < loadedCustomer.size(); i++) {
 			if(loadedCustomer.get(i).getName().equals(name))
-				foundCostumersList.add(loadedCustomer.get(i));
+				foundCustomersList.add(loadedCustomer.get(i));
 		}
-		return foundCostumersList;
+		return foundCustomersList;
 	}
 	
 	public void deleteCustomer(Customer toDel) {

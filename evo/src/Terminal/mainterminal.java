@@ -150,13 +150,27 @@ public class mainterminal {
 			String name3 = scanner3.nextLine();
 			
 			System.out.println("Provide a taxnumber:");
-			int tax = readInt();
+			int tax;
+			do
+			  { 
+			      try {
+			          String s = scanner3.nextLine();
+			          tax = Integer.parseInt(s);
+			          break;
+			      }
+			      catch (Exception e)
+			      {
+			          System.out.print("Couldn't parse input, please try again");
+			      }
+			  }
+			  while (true);
 			
 			System.out.println("Provide a postcode:");
 			int postcode = readInt();
 			
 			System.out.println("Provide a shopnumber:");
 			int shopnumber = readInt();
+			
 			
 			System.out.println("Provide an e-mail");
 			String email = scanner3.nextLine();

@@ -166,10 +166,36 @@ public class mainterminal {
 			  while (true);
 			
 			System.out.println("Provide a postcode:");
-			int postcode = readInt();
+			int postcode;
+			do
+			  { 
+			      try {
+			          String s = scanner3.nextLine();
+			          postcode = Integer.parseInt(s);
+			          break;
+			      }
+			      catch (Exception e)
+			      {
+			          System.out.print("Couldn't parse input, please try again");
+			      }
+			  }
+			  while (true);
 			
 			System.out.println("Provide a shopnumber:");
-			int shopnumber = readInt();
+			int shopnumber;
+			do
+			  { 
+			      try {
+			          String s = scanner3.nextLine();
+			          shopnumber = Integer.parseInt(s);
+			          break;
+			      }
+			      catch (Exception e)
+			      {
+			          System.out.print("Couldn't parse input, please try again");
+			      }
+			  }
+			  while (true);
 			
 			
 			System.out.println("Provide an e-mail");

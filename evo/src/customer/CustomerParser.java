@@ -1,4 +1,4 @@
-package Costumer;
+package customer;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,12 +20,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-public class CostumerParser {
+public class CustomerParser {
 	
 	private String filePath = "costumer.xml";
-	private List<Costumer> loadedCostumer = new ArrayList<Costumer>();
+	private List<Customer> loadedCostumer = new ArrayList<Customer>();
 	
-	public boolean tryToSave(List<Costumer> costumer) {
+	public boolean tryToSave(List<Customer> costumer) {
 		try {
 			
 			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -33,7 +33,7 @@ public class CostumerParser {
 			Document doc = docBuilder.newDocument();
 			
 			
-			Element costumerElement = doc.createElement("Users"); // duplán volt létrehozva element customers névvel, itt
+			Element costumerElement = doc.createElement("Users"); // duplï¿½n volt lï¿½trehozva element customers nï¿½vvel, itt
 			
 			
 			doc.appendChild(costumerElement);
@@ -41,10 +41,10 @@ public class CostumerParser {
 			
 			for(int i = 0; i < costumer.size(); i++) {
 				
-				Costumer costumers = costumer.get(i);
+				Customer costumers = costumer.get(i);
 				
 				
-				Element costumersElement = doc.createElement("Customer"); // és itt, így átneveztem az elõzõt
+				Element costumersElement = doc.createElement("Customer"); // ï¿½s itt, ï¿½gy ï¿½tneveztem az elï¿½zï¿½t
 				costumerElement.appendChild(costumersElement);
 				
 				
@@ -97,7 +97,7 @@ public class CostumerParser {
 				
 				
 				for(int i = 0; i < costumerElement.getChildNodes().getLength(); i++) {
-					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasandó xml Element nevével
+					if(costumerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasandï¿½ xml Element nevï¿½vel
 						
 						Element costumersElement = (Element) costumerElement.getChildNodes().item(i);
 						
@@ -113,7 +113,7 @@ public class CostumerParser {
 						String email = costumersElement.getAttribute("Email");
 						
 						
-						Costumer costumer = new Costumer(name, tax, postCode, shopNumber, email);
+						Customer costumer = new Customer(name, tax, postCode, shopNumber, email);
 						
 						
 						loadedCostumer.add(costumer);
@@ -133,21 +133,21 @@ public class CostumerParser {
 		}
 	}
 	
-	public List<Costumer> getLoadedPeople() {
+	public List<Customer> getLoadedPeople() {
 		return loadedCostumer;
 	}
 	
-	public void printCostumerList() { //automatikusan kiírja az elmentett neveket és adószámot
+	public void printCostumerList() { //automatikusan kiï¿½rja az elmentett neveket ï¿½s adï¿½szï¿½mot
 		if(!this.loadedCostumer.isEmpty())
 			for (int i = 0; i < this.loadedCostumer.size(); i++) {
 				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCostumer.get(i).getName(), this.loadedCostumer.get(i).getTax()));
 			}
 	}
 	
-	//az itt lévõ mindkét keresõmetódust még lehet tovább gondolni, pl partial matchekkel, vagy whitespace karakterek ignorálásávla, toLowercase-el stb.
+	//az itt lï¿½vï¿½ mindkï¿½t keresï¿½metï¿½dust mï¿½g lehet tovï¿½bb gondolni, pl partial matchekkel, vagy whitespace karakterek ignorï¿½lï¿½sï¿½vla, toLowercase-el stb.
 	
-	public List<Costumer> findCostumers(String name) {
-		List<Costumer> foundCostumersList = new ArrayList<Costumer>();
+	public List<Customer> findCostumers(String name) {
+		List<Customer> foundCostumersList = new ArrayList<Customer>();
 		for (int i = 0; i < loadedCostumer.size(); i++) {
 			if(loadedCostumer.get(i).getName().equals(name))
 				foundCostumersList.add(loadedCostumer.get(i));
@@ -155,7 +155,7 @@ public class CostumerParser {
 		return foundCostumersList;
 	}
 	
-	public void deleteCustomer(Costumer toDel) {
+	public void deleteCustomer(Customer toDel) {
 		for (int i = 0; i < loadedCostumer.size(); i++) {
 			if(loadedCostumer.get(i).equals(toDel))
 				loadedCostumer.remove(i);

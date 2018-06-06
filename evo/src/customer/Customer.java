@@ -1,7 +1,7 @@
-package Costumer;
+package customer;
 
 
-public class Costumer {
+public class Customer {
 	
 	private String name;
 	private int tax;
@@ -9,7 +9,7 @@ public class Costumer {
 	private int shopNumber;
 	private String email;
 	
-	public Costumer(String name, int tax, int postCode, int shopNumber, String email) {
+	public Customer(String name, int tax, int postCode, int shopNumber, String email) {
 		this.name = name;
 		this.tax = tax;
 		this.postCode = postCode;
@@ -17,7 +17,7 @@ public class Costumer {
 		this.email = email;
 	}
 	
-	public Costumer() {
+	public Customer() {
 		
 	}
 	

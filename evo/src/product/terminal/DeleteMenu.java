@@ -12,7 +12,7 @@ import product.classes.Products;
 import product.terminal.ProductReader;
 import product.xml.DeleteXmlElement;
 
-public class DeleteItemMenu {
+public class DeleteMenu {
 	public static List <Products> itemDeletemenu(List <Products> productList) {
 		do {
 			for (int i = 0; i < productList.size(); i++) {

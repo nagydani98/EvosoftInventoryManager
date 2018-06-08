@@ -1,4 +1,4 @@
-package product.teszt;
+package product.terminal;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class productReader {
+public class ProductReader {
 	//Termékek, itt olvasom be a termékek adatait és itt elenõrzöm le a helyességüket.
 	
 	public static int enterInteger(int min, int max) {
@@ -34,6 +34,17 @@ public class productReader {
 		}while(notright);
 		scanner.close();
 		return theIntegerValue;
+	}
+	public static boolean enterBoolean() {
+		System.out.print("1 - igen 2 - nem");
+		int decision = enterInteger(1, 2);
+		
+		if(decision==1) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
 	public static double enterDouble(int min, int max) {
@@ -86,9 +97,14 @@ public class productReader {
 		return theStringInput;
 	}
 	
-	public static int writeDownMenuAndChooseOne(String menu[]) {
+	public static int writeDownMenuAndChooseOne(String menu[],boolean spacebreak) {
 		for(int i = 0; i < menu.length; i++) {
-			System.out.print(menu[i]+" - "+ (i+1) +"  ");
+			if(spacebreak) {
+				System.out.print(menu[i]+" - "+ (i+1) +"\n");
+			}else {
+				System.out.print(menu[i]+" - "+ (i+1) +"  ");
+			}
+			
 		}
 		System.out.println("\n");
 		return enterInteger(1,menu.length)-1;
@@ -150,17 +166,17 @@ public class productReader {
 		
 		while(menuPoint != 5) {
 			String menu[] = {"Egyébb termék","CPU","GPU","kilépés"};
-			menuPoint = writeDownMenuAndChooseOne(menu);
+			menuPoint = writeDownMenuAndChooseOne(menu,false);
 			if(menuPoint != 5) {
 				listOfNewProducts.add(readTheNewProducts(menuPoint));
 			
 				String menutwo[] = {"Folytatja","vissza"};
-				menuPoint = writeDownMenuAndChooseOne(menutwo);
+				menuPoint = writeDownMenuAndChooseOne(menutwo,false);
 			
 				if(menuPoint == 2) {
 				
 					String menuthree[] = {"Mentés","Kilépés mentés nélkül"};
-					menuPoint = writeDownMenuAndChooseOne(menuthree);
+					menuPoint = writeDownMenuAndChooseOne(menuthree,false);
 				
 					if(menuPoint == 1) {
 						menuPoint=5;

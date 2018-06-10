@@ -14,6 +14,7 @@ public class ComponentsCPU extends ComponentsPC{
 		this.cpu_cores = cpu_cores;
 		this.manufactorytech = manufactorytech;
 		setType("cpu");
+		setCategorical("componentpc");
 	}
 	
 	public int getClock() {
@@ -35,9 +36,9 @@ public class ComponentsCPU extends ComponentsPC{
 	@Override
 	public void writeDownTheParameters() {
 		super.writeDownTheParameters();
-		System.out.println("Core sebesség: "+clock+"\n");
-		System.out.println("Foglalat: " +socket+"\n");
-		System.out.println("CPU magok szám: " +cpu_cores+"\n");
-		System.out.println("Gyártási teknia"+manufactorytech+"\n");
+		System.out.print("Core sebesség: "+clock+"\n");
+		System.out.print("Foglalat: " +socket+"\n");
+		System.out.print("CPU magok szám: " +cpu_cores+"\n");
+		System.out.print("Gyártási teknia"+manufactorytech+"\n");
 	}
 }

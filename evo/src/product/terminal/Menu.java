@@ -56,7 +56,7 @@ public class Menu {
 	static class iDelete{
 		public static void display() {
 		int j = 0;
-		boolean continueDelete = false;
+		boolean continueDelete = true;
 		do {
 			if(j%5 == 0 || j == 0) {
 				for (int i = 0; i < theList.size(); i++) {
@@ -71,7 +71,7 @@ public class Menu {
 			
 			System.out.print("Melyik elemet szeretné törölni:");
 			int decision = Terminal.operation.enterInteger(1, theList.size()) - 1;
-		
+			
 			System.out.print("Biztos törölni szeretné az elemet:\n");
 			
 			if(Terminal.operation.enterBoolean()) {
@@ -83,13 +83,14 @@ public class Menu {
 					System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
 				}
 			}
-			if(!theList.isEmpty()) {
+			if(theList.isEmpty()) {
+				System.out.println("Nincs több item!");
+				continueDelete = false;
+			}else {
 				System.out.println("Szeretné folytatni:");
-				Terminal.operation.enterBoolean();
-				continueDelete = true;
+				continueDelete = Terminal.operation.enterBoolean();
 			}
-			
-			j++;
+				j++;
 			}while(continueDelete);
 		}
 	}
@@ -185,6 +186,7 @@ public class Menu {
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menuthree,false);
 				}
 				if(menuPoint == 1) {
+					theList.addAll(listOfNewProducts);
 					Xml.writer(listOfNewProducts);
 				break;
 				}else {

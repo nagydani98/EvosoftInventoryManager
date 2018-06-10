@@ -58,6 +58,21 @@ public class Xml {
 			} catch (SAXException | IOException e) {
 				e.printStackTrace();
 			}
+			
+			if(doc.getElementsByTagName("product").item(0)==null) {
+				Element rootElement = doc.createElement("product");
+				doc.appendChild(rootElement);
+			}
+			if(doc.getElementsByTagName("componentpc").item(0)==null) {
+				Element root = doc.getDocumentElement();
+				Element pcComponent = doc.createElement("componentpc");
+				root.appendChild(pcComponent);
+			}
+			if(doc.getElementsByTagName("other").item(0)==null) {
+				Element root = doc.getDocumentElement();
+				Element other = doc.createElement("other");
+				root.appendChild(other);
+			}
 			doc.getDocumentElement().normalize();
 			return true;
 		}else {
@@ -68,7 +83,6 @@ public class Xml {
 
 			Element pcComponent = doc.createElement("componentpc");
 			rootElement.appendChild(pcComponent);
-			
 			Element other = doc.createElement("other");
 			rootElement.appendChild(other);
 			return false;
@@ -188,9 +202,24 @@ public class Xml {
 	      String dName = name.getTextContent();
 	      
 	      if (dName.equals(productName)) {					//összehasonlitjuk az elemet azzal a értékkel amit keresünk
-	    	 System.out.print("Siker");
+	    	 System.out.print("Sikeres\n");
 	    	 goods.getParentNode().removeChild(goods);		//itt töröljük ki az elemet
 	    	 goods.normalize();
+	    	 if(doc.getElementsByTagName("product").item(0)==null) {
+					Element rootElement = doc.createElement("product");
+					doc.appendChild(rootElement);
+			 }
+			 if(doc.getElementsByTagName("componentpc").item(0)==null) {
+					Element root = doc.getDocumentElement();
+					Element pcComponent = doc.createElement("componentpc");
+					root.appendChild(pcComponent);
+			 }
+		  	 if(doc.getElementsByTagName("other").item(0)==null) {
+					Element root = doc.getDocumentElement();
+					Element other = doc.createElement("other");
+					root.appendChild(other);
+			 }
+			doc.getDocumentElement().normalize();
 	    	 xmlToString();						//vissza irjuk a fájlba amit változtatunk
 	    	 return true;
 			}
@@ -204,7 +233,7 @@ public class Xml {
 			Element type =  (Element) root .getElementsByTagName(product.getCategorical()).item(0);
 			
 			Element item = doc.createElement("item");
-			//item.setAttribute("type", product.getType());
+			item.setAttribute("type", product.getType());
 			type.appendChild(item);
 			
 			

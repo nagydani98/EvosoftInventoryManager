@@ -21,6 +21,7 @@ public class ProductMenu {
 		Menu.setList(theList);
 		
 		do {
+			boolean noMoreProd = false;
 			try {
 				if(theList.isEmpty()) {
 					throw new NoProductAvailableException();
@@ -49,9 +50,13 @@ public class ProductMenu {
 					}
 				}
 			}catch(NoProductAvailableException e) {
+						noMoreProd = true;
 						e.printStackTrace();
-						System.out.print("\nEnter the new products:");
-						Menu.inputProd.display();
+			}
+			if(noMoreProd) {
+				System.out.print("Enter the new products:\n");
+				Menu.inputProd.display();
+				theList = Menu.getList();
 			}
 		}while(continueTask);
 		

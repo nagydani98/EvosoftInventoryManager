@@ -16,6 +16,7 @@ public class ComponentsGPU extends ComponentsPC{
 		this.bus_memory = bus_memory;
 		this.bus_type = bus_type;
 		setType("gpu");
+		setCategorical("componentpc");
 	}
 	
 	public int getClock() {
@@ -41,10 +42,10 @@ public class ComponentsGPU extends ComponentsPC{
 	@Override
 	public void writeDownTheParameters() {
 		super.writeDownTheParameters();
-		System.out.println("Core sebesség: " +clock+"\n");
-		System.out.println("Ram (Mb): " +ram+"\n");
-		System.out.println("Memória sebesség: " +ram_speed+"\n");
-		System.out.println("Memória bussz sebessége: " +bus_memory+"\n");
-		System.out.println("Busz tipusa: " +bus_type+"\n");
+		System.out.print("Core sebesség: " +clock+"\n");
+		System.out.print("Ram (Mb): " +ram+"\n");
+		System.out.print("Memória sebesség: " +ram_speed+"\n");
+		System.out.print("Memória bussz sebessége: " +bus_memory+"\n");
+		System.out.print("Busz tipusa: " +bus_type+"\n");
 	}
 }

@@ -50,7 +50,7 @@ public abstract class Products {
 	
 	
 	public void writeDownTheParameters() {
-		System.out.println("\nTippus: " + type +"\n");
+		System.out.print("Tippus: " + type +"\n");
 		System.out.print("Termek neve: " + name +"\n");
 		System.out.print("Gyártó: " +producer+"\n");
 		System.out.print("Darabszám: " +quantity+"\n" );

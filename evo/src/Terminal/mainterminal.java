@@ -1,5 +1,7 @@
 package Terminal;
 import Item.*;
+
+import product.terminal.ProductMenu;
 import customer.*;
 
 import java.io.BufferedReader;
@@ -63,7 +65,9 @@ public class mainterminal {
 			menuOfCustomers();
 			break;
 		case 2:
-			menuOfItems();
+			//menuOfItems();
+			ProductMenu pm = new ProductMenu();
+			pm.theProductMenu_MainMenu();
 			break;
 		case 3:
 			menustate = false;

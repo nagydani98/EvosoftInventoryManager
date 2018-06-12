@@ -31,7 +31,7 @@ public class CustomerParser {
 			Document doc = docBuilder.newDocument();
 			
 			
-			Element customerElement = doc.createElement("Users"); // dupl�n volt l�trehozva element customers n�vvel, itt
+			Element customerElement = doc.createElement("Users"); // duplan volt letrehozva element customers nevvel, itt
 			
 			
 			doc.appendChild(customerElement);
@@ -42,7 +42,7 @@ public class CustomerParser {
 				Customer customers = customer.get(i);
 				
 				
-				Element customersElement = doc.createElement("Customer"); // �s itt, �gy �tneveztem az el�z�t
+				Element customersElement = doc.createElement("Customer"); // es itt, igy atneveztem az elozot
 				customerElement.appendChild(customersElement);
 				
 				
@@ -95,7 +95,7 @@ public class CustomerParser {
 				
 				
 				for(int i = 0; i < customerElement.getChildNodes().getLength(); i++) {
-					if(customerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasand� xml Element nev�vel
+					if(customerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasando xml Element nevevel
 						
 						Element customersElement = (Element) customerElement.getChildNodes().item(i);
 						
@@ -135,14 +135,14 @@ public class CustomerParser {
 		return loadedCustomer;
 	}
 	
-	public void printCustomerList() { //automatikusan ki�rja az elmentett neveket �s ad�sz�mot
+	public void printCustomerList() { //automatikusan kiirja az elmentett neveket es adjaszamot
 		if(!this.loadedCustomer.isEmpty())
 			for (int i = 0; i < this.loadedCustomer.size(); i++) {
 				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCustomer.get(i).getName(), this.loadedCustomer.get(i).getTax()));
 			}
 	}
 	
-	//az itt l�v� mindk�t keres�met�dust m�g lehet tov�bb gondolni, pl partial matchekkel, vagy whitespace karakterek ignor�l�s�vla, toLowercase-el stb.
+	//az itt l�v� mindk�t keres�met�dust m�g lehet tovabb gondolni, pl partial matchekkel, vagy whitespace karakterek ignor�l�s�vla, toLowercase-el stb.
 	
 	public List<Customer> findCostumers(String name) {
 		List<Customer> foundCustomersList = new ArrayList<Customer>();

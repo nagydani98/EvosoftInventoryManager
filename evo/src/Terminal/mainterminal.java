@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class mainterminal {
-//main terminal, ezt nem kell szerintem kiszervezni kï¿½lï¿½n classba
+//main terminal, ezt nem kell szerintem kiszervezni kelen classba
 	
-	//main metï¿½dus
+	//main metedus
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		menuOfItemsAndCusomers();
 	}
 	
-	//ellenï¿½rzï¿½tten beolvasï¿½ metï¿½dusok, menu interakciï¿½hoz, vagy egyebekhez
+	//ellenerzetten beolvase metedusok, menu interakciehoz, vagy egyebekhez
 	public static int readInt() {
 		int num = 0;
 		InputStreamReader inputStream = new InputStreamReader(System.in);
@@ -37,7 +37,7 @@ public class mainterminal {
 		return num;
 	}
 	
-	public static int readIntInRange(int floor, int ceiling) { //a delete funkciï¿½hoz, hogy a megadott sorszï¿½m lista mï¿½retï¿½n belï¿½l van-e
+	public static int readIntInRange(int floor, int ceiling) { //a delete funkciehoz, hogy a megadott sorszem lista mereten belel van-e
 		int num = -1;
 		boolean unsuccessful = true;
 		
@@ -52,7 +52,7 @@ public class mainterminal {
 		return num;
 	}
 	
-	//menu metï¿½dusok
+	//menu metedusok
 	public static void menuOfItemsAndCusomers() {
 		int menunumber=0;
 		boolean menustate = true;
@@ -117,7 +117,7 @@ public class mainterminal {
 		CustomerParser parser = new CustomerParser();
 		
 		do {
-			if (!parser.tryToLoad()) //egyenlï¿½re a loopon belï¿½lre raktam a loadot, ï¿½gy ha create vagy delete operï¿½ciï¿½t csinï¿½lunk, a lista automatikusan frissï¿½l, ï¿½s elï¿½re be lesz tï¿½ltve
+			if (!parser.tryToLoad()) //egyenlïore a loopon belïulre raktam a loadot, egy ha create vagy delete opereciet csinelunk, a lista automatikusan frissel, es elere be lesz teltve
 				System.out.println("Error loading xml, perhaps the file does not exist");
 				
 			System.out.print(
@@ -149,8 +149,8 @@ public class mainterminal {
 			
 		case 3:
 			Scanner scanner3 = new Scanner(System.in); 
-			System.out.println("Registering new customer, please provide a name:"); //ez ï¿½gy mï¿½g placeholder, hisz meg kell majd valï¿½sï¿½tanunk ellenï¿½rzï¿½seket,
-																					//hogy pl az emailt megfelelï¿½ formï¿½tumban adjï¿½k meg
+			System.out.println("Registering new customer, please provide a name:"); //ez egy meg placeholder, hisz meg kell majd valesetanunk ellenerzeseket,
+																					//hogy pl az emailt megfelele formetumban adjek meg
 			String name3 = scanner3.nextLine();
 			
 			System.out.println("Provide a taxnumber:");
@@ -209,7 +209,7 @@ public class mainterminal {
 			
 			parser.getLoadedPeople().add(customer);
 			
-			//scanner3.close(); ez az utasï¿½tï¿½s gondot okoz valamiï¿½rt, majd demonstrï¿½lom
+			//scanner3.close(); ez az utasetes gondot okoz valamiert, majd demonstrelom
 			break;
 		
 		
@@ -219,14 +219,14 @@ public class mainterminal {
 			Scanner scanner4 = new Scanner(System.in); 
 			String name4 = scanner4.nextLine();
 			
-			List<Customer> customersToDel= parser.findCostumers(name4); //megtalï¿½lja az ï¿½szes customert ezzel a nï¿½vvel, eltï¿½rolja listï¿½ban
+			List<Customer> customersToDel= parser.findCostumers(name4); //megtalelja az eszes customert ezzel a nevvel, elterolja listeban
 			
-			if(!customersToDel.isEmpty() && customersToDel.size() > 1) { //ha tï¿½bb, mint egy ilyen nevï¿½ ember van
+			if(!customersToDel.isEmpty() && customersToDel.size() > 1) { //ha tebb, mint egy ilyen neve ember van
 				System.out.println("Customers with that name:");
 				for (int i = 0; i < customersToDel.size(); i++) {
-					System.out.println(String.format("%d. %s", i+1, customersToDel.get(i).toString())); //kiï¿½rja a teljes adataikat
+					System.out.println(String.format("%d. %s", i+1, customersToDel.get(i).toString())); //kierja a teljes adataikat
 				}
-				System.out.println("Please provide the number of the customer you wish to delete:"); //megkï¿½r, hogy ï¿½rjam be a sorzsï¿½mï¿½t annak, amelyiket tï¿½rï¿½lnï¿½m
+				System.out.println("Please provide the number of the customer you wish to delete:"); //megker, hogy erjam be a sorzsemet annak, amelyiket terelnem
 				int num = readIntInRange(0, customersToDel.size());
 				parser.deleteCustomer(customersToDel.get(num-1));
 			}
@@ -248,7 +248,7 @@ public class mainterminal {
 			System.out.println("\nUnrecognised input");
 		}
 		
-		parser.tryToSave(parser.getLoadedPeople()); //mentï¿½s szintï¿½n a loop vï¿½gï¿½n
+		parser.tryToSave(parser.getLoadedPeople()); //mentes szinten a loop vegen
 		}while(menustate);
 	}
 }

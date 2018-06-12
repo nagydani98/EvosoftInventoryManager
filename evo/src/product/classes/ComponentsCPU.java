@@ -36,9 +36,13 @@ public class ComponentsCPU extends ComponentsPC{
 	@Override
 	public void writeDownTheParameters() {
 		super.writeDownTheParameters();
-		System.out.print("Core sebesség: "+clock+"\n");
+		/*System.out.print("Core sebesség: "+clock+"\n");
 		System.out.print("Foglalat: " +socket+"\n");
 		System.out.print("CPU magok szám: " +cpu_cores+"\n");
-		System.out.print("Gyártási teknia"+manufactorytech+"\n");
+		System.out.print("Gyártási teknia"+manufactorytech+"\n")*/
+		System.out.print("Core speed: "+clock+"\n");
+		System.out.print("Socket: " +socket+"\n");
+		System.out.print("Numbers of cpu cores: " +cpu_cores+"\n");
+		System.out.print("Manufactured techniques: "+manufactorytech+"\n");
 	}
 }

@@ -27,7 +27,8 @@ public class ProductMenu {
 					throw new NoProductAvailableException();
 				}
 				if(fileExist) {
-					String[] menuBar = {"Uj adatfelvetele","Termékek kiirása","Termék törlése","Termék keresése","Kilépés"};
+					//String[] menuBar = {"Uj adatfelvetele","Termékek kiirása","Termék törlése","Termék keresése","Kilépés"};
+					String[] menuBar = {"Create new product","List products","Delete product","Search for product","Exit"};
 					int decision = Terminal.operation.writeDownMenuAndChooseOne(menuBar, true);
 					switch(decision) {
 						case 1:

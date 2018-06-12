@@ -38,7 +38,8 @@ public class Menu {
 		public static void Display() {
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
-			System.out.print("Irja be a nevét: ");
+			//System.out.print("Kérem irja be a termék nevét: ");
+			System.out.print("Please write the name of the product: ");
 			String name = Terminal.operation.enterString(4, 15);
 			
 			RightFindedIndexofList = letsfindTheRightElement(name);
@@ -61,7 +62,8 @@ public class Menu {
 			if(j%5 == 0 || j == 0) {
 				for (int i = 0; i < theList.size(); i++) {
 					Products thistag = theList.get(i);
-					System.out.print(i+1+".elem:\n");
+					//System.out.print(i+1+".elem:\n");***********
+					System.out.print(i+1+".item:\n");
 					thistag.writeDownTheParameters();
 					if(i==theList.size()-1) {
 						System.out.println("\n");
@@ -69,25 +71,31 @@ public class Menu {
 				}
 			}
 			
-			System.out.print("Melyik elemet szeretné törölni:");
+			//System.out.print("Melyik elemet szeretné törölni:");
+			System.out.print("Which item would you delete:");
 			int decision = Terminal.operation.enterInteger(1, theList.size()) - 1;
 			
-			System.out.print("Biztos törölni szeretné az elemet:\n");
+			//System.out.print("Biztos törölni szeretné az elemet:\n");
+			System.out.print("Are you sure to delete it:\n");
 			
 			if(Terminal.operation.enterBoolean()) {
 				Products thisProduct = theList.get(decision);
 				if(Xml.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
 					theList.remove(thisProduct);
-					System.out.print("Törlés sikeres!\n");
+					//System.out.print("Törlés sikeres!\n");
+					System.out.print("Delete is successful!\n");
 				}else {
-					System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
+					//System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
+					System.out.print("Delete is unsuccesful for this item: "+thisProduct.getName()+"\n");
 				}
 			}
 			if(theList.isEmpty()) {
-				System.out.println("Nincs több item!");
+				//System.out.println("Nincs több item!")
+				System.out.println("No more item!");
 				continueDelete = false;
 			}else {
-				System.out.println("Szeretné folytatni:");
+				//System.out.println("Szeretné folytatni:");
+				System.out.println("Would you like to continue it:");
 				continueDelete = Terminal.operation.enterBoolean();
 			}
 				j++;
@@ -105,7 +113,8 @@ public class Menu {
 				System.out.print("\n");
 			}
 			if(theList.isEmpty()) {
-				System.out.print("Nincs termék!\n");
+				//System.out.print("Nincs termék!\n");
+				System.out.print("We don't have product!\n");
 			}
 		}
 	}
@@ -117,44 +126,57 @@ public class Menu {
 		private static Products readTheNewProducts(int type){
 			Products newProduct = null;
 					
-			System.out.println("Irja be az eszköz nevét: ");
+			//System.out.println("Irja be az eszköz nevét: ");
+			System.out.println("Please write the name of the product: ");
 			String name = Terminal.operation.enterString(2,15);
-			System.out.println("Irja be a eszköz gyártóját: ");
+			//System.out.println("Irja be a eszköz gyártóját: ");
+			System.out.println("Please write the name of the producer: ");
 			String producer = Terminal.operation.enterString(2,15);
-			System.out.println("Irja be a eszköz mennyiségét: ");
+			//System.out.println("Irja be a eszköz mennyiségét: ");
+			System.out.println("Please write the amount of the product: ");
 			int quantity = Terminal.operation.enterInteger(0,10000);
-			System.out.println("Irja be a eszköz árát (Ft-ban): ");
+			//System.out.println("Irja be a eszköz árát (Ft-ban): ");	//gross, net
+			System.out.println("Please write the net price of the product(in Fts): ");
 			int price = Terminal.operation.enterInteger(0,500000);
 				
 			switch(type) {
 				case 1:
-					System.out.println("Irja be az eszköz tipusát");
+					//System.out.println("Irja be az eszköz tipusát");
+					System.out.println("Please write type of the product");
 					String productType = Terminal.operation.enterString(3,15);
 					newProduct = new Other(name, producer, quantity, price, productType);
 					break;
 				case 2:
-					System.out.println("Irja be a core sebesség(Mhz): ");
+					//System.out.println("Irja be a core sebesség(Mhz): ");
+					System.out.println("Please write the speed of the core(Mhz): ");
 					int cpuCore = Terminal.operation.enterInteger(100,5000);
-					System.out.println("Irja be a foglalatot: ");
+					//System.out.println("Irja be a foglalatot: ");
+					System.out.println("Please write the socket: ");
 					String socket = Terminal.operation.enterString(2,10);
-					System.out.println("Irja be a CPU magok szám: ");
+					System.out.println("Please write the numbers of the cpu cores: ");
 					int coreNumber = Terminal.operation.enterInteger(1,16);
-					System.out.println("Irja be a gyártási tekniát(nm): ");
+					//System.out.println("Irja be a gyártási tekniát(nm): ");
+					System.out.println("Please write the manufacturers technology(nano milimeter): ");
 					int manufactorytech = Terminal.operation.enterInteger(14,34);
 							
 					newProduct = new ComponentsCPU(name, producer, quantity, price, cpuCore, socket, coreNumber, manufactorytech);
 							
 					break;
 				case 3:
-					System.out.println("Irja be a core sebesség(Mhz): ");
+					//System.out.println("Irja be a core sebesség(Mhz): ");
+					System.out.println("Please write the speed of the gpu core(Mhz): ");
 					int gpuCore = Terminal.operation.enterInteger(100,5000);
-					System.out.println("Irja be a Ramot (Mb): ");
+					//System.out.println("Irja be a Ramot (Mb): ");
+					System.out.println("Please write the size of ram(Mega Byte): ");
 					int ram = Terminal.operation.enterInteger(250,8200);
-					System.out.println("Irja be a memória sebesség: ");
+					//System.out.println("Irja be a memória sebesség: ");
+					System.out.println("Please write the speed of ram: ");
 					int memoriaSpeed = Terminal.operation.enterInteger(250,8200);
-					System.out.println("Irja be a memória bussz sebessége ");
+					//System.out.println("Irja be a memória bussz sebessége ");
+					System.out.println("Please write speed of memory buss: ");
 					int busSpeed = Terminal.operation.enterInteger(250,8200);
-					System.out.println("Irja be a memória bussz tipúsát ");
+					//System.out.println("Irja be a memória bussz tipúsát: ");
+					System.out.println("Please write the type of memory: ");
 					String busType= Terminal.operation.enterString(2,10);
 							
 					newProduct = new ComponentsGPU(name, producer, quantity, price, gpuCore, ram, memoriaSpeed, busSpeed, busType);
@@ -170,19 +192,22 @@ public class Menu {
 					
 			while(menuPoint != 4) {
 				menuPoint = 0;
-				String menu[] = {"Egyébb termék","CPU ","GPU ","kilépés"};
+				//String menu[] = {"Egyébb termék","CPU ","GPU ","kilépés"};
+				String menu[] = {"Other product","CPU ","GPU ","exit"};
 				menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menu,false);
 				if(menuPoint != 4) {
 					listOfNewProducts.add(readTheNewProducts(menuPoint));
 						
-					String menutwo[] = {"Folytatja","kilépés"};
+					//String menutwo[] = {"Folytatja","kilépés"};
+					String menutwo[] = {"Continue","exit"};
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menutwo,false);
 				}
 				if(menuPoint == 1)menuPoint = 1;
 				
 				if((menuPoint == 2)||(menuPoint==4 && !listOfNewProducts.isEmpty())) {
 					
-					String menuthree[] = {"Mentés","Kilépés mentés nélkül"};
+					//String menuthree[] = {"Mentés","Kilépés mentés nélkül"};
+					String menuthree[] = {"Save","exit without save"};
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menuthree,false);
 				}
 				if(menuPoint == 1) {

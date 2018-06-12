@@ -40,7 +40,8 @@ public class Terminal{
 		}
 		
 		public static boolean enterBoolean() {
-			System.out.print("1 - igen 2 - nem:");
+			//System.out.print("1 - igen 2 - nem:");
+			System.out.print("1 - yes 2 - no:");
 			int decision = enterInteger(1, 2);
 			
 			if(decision==1) {

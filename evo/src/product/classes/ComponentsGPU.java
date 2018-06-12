@@ -42,10 +42,17 @@ public class ComponentsGPU extends ComponentsPC{
 	@Override
 	public void writeDownTheParameters() {
 		super.writeDownTheParameters();
+		System.out.print("Speed of GPU core: " +clock+"\n");
+		System.out.print("Ram (Megabyte): " +ram+"\n");
+		System.out.print("Speed of memory: " +ram_speed+"\n");
+		System.out.print("Speed of memory buss: " +bus_memory+"\n");
+		System.out.print("Type of buss: " +bus_type+"\n");
+		/*
 		System.out.print("Core sebesség: " +clock+"\n");
 		System.out.print("Ram (Mb): " +ram+"\n");
 		System.out.print("Memória sebesség: " +ram_speed+"\n");
 		System.out.print("Memória bussz sebessége: " +bus_memory+"\n");
 		System.out.print("Busz tipusa: " +bus_type+"\n");
+		*/
 	}
 }

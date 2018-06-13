@@ -178,9 +178,9 @@ public class Xml {
 				}
 				if(type.equals("gpu")) {
 					int clock = Integer.parseInt(eElement.getElementsByTagName("clock").item(0).getTextContent());
-					int ram = Integer.parseInt(eElement.getElementsByTagName("cpu_cores").item(0).getTextContent());
-					int ram_speed = Integer.parseInt(eElement.getElementsByTagName("cpu_cores").item(0).getTextContent());
-					int bus_memory = Integer.parseInt(eElement.getElementsByTagName("cpu_cores").item(0).getTextContent());
+					int ram = Integer.parseInt(eElement.getElementsByTagName("ram").item(0).getTextContent());
+					int ram_speed = Integer.parseInt(eElement.getElementsByTagName("ram_speed").item(0).getTextContent());
+					int bus_memory = Integer.parseInt(eElement.getElementsByTagName("bus_memory").item(0).getTextContent());
 					String bus_type = eElement.getElementsByTagName("bus_type").item(0).getTextContent();
 	
 					OnlyOneProduct = new ComponentsGPU(name, producer, quantity, price, clock, ram, ram_speed, bus_memory, bus_type);

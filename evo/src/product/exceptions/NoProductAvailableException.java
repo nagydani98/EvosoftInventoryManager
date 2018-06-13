@@ -8,6 +8,6 @@ public class NoProductAvailableException extends Exception{
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("We don't have products!");
+		System.err.println("We don't have products!\n");
 	}
 }

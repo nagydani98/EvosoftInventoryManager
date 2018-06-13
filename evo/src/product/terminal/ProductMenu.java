@@ -9,9 +9,9 @@ import product.terminal.Menu;
 import product.xml.Xml;
 
 public class ProductMenu {
-	private List<Products> theList = new ArrayList<Products>();
+	private static List<Products> theList = new ArrayList<Products>();
 	
-	public void theProductMenu_MainMenu() {
+	public static void theProductMenu_MainMenu() {
 		boolean continueTask = true;
 		boolean fileExist = false;
 		
@@ -58,10 +58,13 @@ public class ProductMenu {
 				System.out.print("Enter the new products:\n");
 				Menu.inputProd.display();
 				theList = Menu.getList();
+				if(theList.isEmpty()) {
+					continueTask = false;
+				}
 			}
 		}while(continueTask);
 		
 		
-		Terminal.closeScanner();
+		//Terminal.closeScanner();
 	}
 }

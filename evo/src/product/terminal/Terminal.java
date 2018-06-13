@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Terminal{
 	private static Scanner scanner;
+	private static String enteredString;
 	public static void openScanner() {
 		scanner = new Scanner(System.in);
 	}
@@ -37,6 +38,17 @@ public class Terminal{
 				}
 			}while(notright);
 			return theIntegerValue;
+		}
+		
+		public static String enterStringWithoutSpecialChar(int min, int max) {
+			String newStr = enterString(min,max);
+			//é,í,ó,õ,á,ó,ü,û
+			newStr.replace("á", "a").replace("Á", "A").replace("é", "e").replace("É", "E").replace("í", "i").replace("Í", "I").replace("ó", "o").replace("Ó", "O");
+			return newStr.replace("õ", "o").replace("Õ", "o").replace("ü", "u").replace("Ü", "U").replace("Û", "U").replace("û", "U");
+		}
+		public static String enterSecred(int min, int max) {
+			String string = null;
+			return string;
 		}
 		
 		public static boolean enterBoolean() {
@@ -77,6 +89,29 @@ public class Terminal{
 		}
 		
 		public static String enterString(int min, int max) {
+				String theStringInput = null;
+				boolean notright = true;
+				do {
+					try {
+						theStringInput = scanner.nextLine();
+						notright = false;
+						
+						if(theStringInput.length()<min) {
+							throw new ShorterThanMinTextExeption();
+						}
+						if(theStringInput.length()>max) {
+							throw new LongerThanMaxTextExeption();
+						}
+					}catch(InputMismatchException | ShorterThanMinTextExeption | LongerThanMaxTextExeption e) {
+						notright = true;
+						e.printStackTrace();
+						System.out.print("\nMin lenght is: "+min+" max lenght is:"+max+"\n");
+					}
+				}while(notright);
+				return theStringInput;
+		}
+		
+		public static String enterStringWithoutSpecial(int min, int max) {
 			String theStringInput = null;
 			boolean notright = true;
 			do {
@@ -97,7 +132,8 @@ public class Terminal{
 				}
 			}while(notright);
 			return theStringInput;
-		}
+	}
+		
 		
 		public static int writeDownMenuAndChooseOne(String menu[],boolean spacebreak) {
 			for(int i = 0; i < menu.length; i++) {

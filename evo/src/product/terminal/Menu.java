@@ -7,6 +7,7 @@ import product.classes.ComponentsCPU;
 import product.classes.ComponentsGPU;
 import product.classes.Other;
 import product.classes.Products;
+import product.exceptions.NoSuchElementException;
 import product.xml.Xml;
 import product.terminal.Terminal;
 
@@ -22,18 +23,21 @@ public class Menu {
 	
 	
 	public static class isearch {
-		private static List<Integer> letsfindTheRightElement(String criterium) {
+		private static List<Integer> letsfindTheRightElement(String criterium) throws NoSuchElementException {
 			int index = 0;
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
 			for(Products SearchedProduct : theList ) {
-				if((SearchedProduct.getName()).matches("*"+criterium+"*")) {
+				if((SearchedProduct.getName()).matches("(.*)"+criterium+"(.*)")) {
 					RightFindedIndexofList.add(index);
 				}
 				index++;
 			}
-			
-			return RightFindedIndexofList;
+			if(RightFindedIndexofList.isEmpty()) {
+				throw new NoSuchElementException();
+			}else {
+				return RightFindedIndexofList;
+			}
 		}
 		public static void Display() {
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
@@ -42,12 +46,15 @@ public class Menu {
 			System.out.print("Please write the name of the product: ");
 			String name = Terminal.operation.enterString(4, 15);
 			
-			RightFindedIndexofList = letsfindTheRightElement(name);
-			
-			for(int i : RightFindedIndexofList) {
-				Products local = theList.get(i);
-				local.writeDownTheParameters();
-				System.out.println("\n");
+			try {
+				RightFindedIndexofList = letsfindTheRightElement(name);
+				for(int i : RightFindedIndexofList) {
+					Products local = theList.get(i);
+					local.writeDownTheParameters();
+					System.out.println("\n");
+				}
+			} catch (NoSuchElementException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -136,7 +143,7 @@ public class Menu {
 			System.out.println("Please write the amount of the product: ");
 			int quantity = Terminal.operation.enterInteger(0,10000);
 			//System.out.println("Irja be a eszköz árát (Ft-ban): ");	//gross, net
-			System.out.println("Please write the net price of the product(in Fts): ");
+			System.out.println("Please write the net price of the product(in Ft-s): ");
 			int price = Terminal.operation.enterInteger(0,500000);
 				
 			switch(type) {
@@ -202,22 +209,18 @@ public class Menu {
 					String menutwo[] = {"Continue","exit"};
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menutwo,false);
 				}
-				if(menuPoint == 1)menuPoint = 1;
 				
 				if((menuPoint == 2)||(menuPoint==4 && !listOfNewProducts.isEmpty())) {
-					
 					//String menuthree[] = {"Mentés","Kilépés mentés nélkül"};
 					String menuthree[] = {"Save","exit without save"};
+					
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menuthree,false);
+					if(menuPoint == 1) {
+						theList.addAll(listOfNewProducts);
+						Xml.writer(listOfNewProducts);
+						break;
+					}
 				}
-				if(menuPoint == 1) {
-					theList.addAll(listOfNewProducts);
-					Xml.writer(listOfNewProducts);
-				break;
-				}else {
-					break;
-				}
-				
 			}
 		}
 	}

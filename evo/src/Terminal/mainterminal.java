@@ -3,6 +3,7 @@ import Item.*;
 
 import product.terminal.ProductMenu;
 import customer.*;
+import product.terminal.Terminal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,8 +67,7 @@ public class mainterminal {
 			break;
 		case 2:
 			//menuOfItems();
-			ProductMenu pm = new ProductMenu();
-			pm.theProductMenu_MainMenu();
+			ProductMenu.theProductMenu_MainMenu();
 			break;
 		case 3:
 			menustate = false;
@@ -117,7 +117,7 @@ public class mainterminal {
 		CustomerParser parser = new CustomerParser();
 		
 		do {
-			if (!parser.tryToLoad()) //egyenlïore a loopon belïulre raktam a loadot, egy ha create vagy delete opereciet csinelunk, a lista automatikusan frissel, es elere be lesz teltve
+			if (!parser.tryToLoad()) //egyenlore a loopon belïulre raktam a loadot, egy ha create vagy delete opereciet csinelunk, a lista automatikusan frissel, es elere be lesz teltve
 				System.out.println("Error loading xml, perhaps the file does not exist");
 				
 			System.out.print(
@@ -250,6 +250,7 @@ public class mainterminal {
 		
 		parser.tryToSave(parser.getLoadedPeople()); //mentes szinten a loop vegen
 		}while(menustate);
+		Terminal.closeScanner();		//ha valaha vissza akarsz innen menni, akkor ezt a reszt torold ki és rakd a program vegere.
 	}
 }
 

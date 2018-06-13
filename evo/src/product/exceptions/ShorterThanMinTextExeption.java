@@ -8,6 +8,6 @@ public class ShorterThanMinTextExeption extends Exception{
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("The text is shorter than minimum lenght!");
+		System.err.println("The text is shorter than minimum lenght!\n");
 	}
 }

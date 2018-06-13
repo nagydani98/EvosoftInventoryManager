@@ -8,6 +8,6 @@ public class LessThanMinNumException extends Exception{
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("The value less than minimum value!");
+		System.err.println("The value less than minimum value!\n");
 	}
 }

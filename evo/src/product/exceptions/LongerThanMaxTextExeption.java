@@ -8,6 +8,6 @@ public class LongerThanMaxTextExeption extends Exception{
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("The text is longer than maximum lenght!");
+		System.err.println("The text is longer than maximum lenght!\n");
 	}
 }

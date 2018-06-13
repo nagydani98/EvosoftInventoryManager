@@ -203,7 +203,10 @@ public class Xml {
 	      
 	      if (dName.equals(productName)) {					//összehasonlitjuk az elemet azzal a értékkel amit keresünk
 	    	 System.out.print("Sikeres\n");
-	    	 goods.getParentNode().removeChild(goods);		//itt töröljük ki az elemet
+	    	 if(goods.getParentNode().removeChild(goods)!=null) {
+	    		 while( name.hasChildNodes() )
+	    			 name.removeChild( name.getFirstChild());
+	    	 }	//itt töröljük ki az elemet
 	    	 goods.normalize();
 	    	 if(doc.getElementsByTagName("product").item(0)==null) {
 					Element rootElement = doc.createElement("product");

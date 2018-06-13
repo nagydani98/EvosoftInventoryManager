@@ -8,6 +8,6 @@ public class InputMismatchException extends Exception{
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("The input is invalid! Please write correct value!");
+		System.err.println("The input is invalid! Please write correct value!\n");
 	}
 }

@@ -9,6 +9,6 @@ public class LargerThanMaxNumException extends Exception{
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("The value larger than maximum value!");
+		System.err.println("The value larger than maximum value!\n");
 	}
 }

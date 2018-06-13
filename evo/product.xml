@@ -2,12 +2,6 @@
 <product>
 <componentpc/>
 
-<other>
-    <item type="Kalapács">
-      <name>Sanyi kalapács</name>
-      <producer>Németország</producer>
-      <quantity>14</quantity>
-      <price>5000</price>
-    </item>
-  </other>
+
+<other/>
 </product>

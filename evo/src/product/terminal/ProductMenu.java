@@ -26,6 +26,7 @@ public class ProductMenu {
 				if(theList.isEmpty()) {
 					throw new NoProductAvailableException();
 				}
+				
 				if(fileExist) {
 					//String[] menuBar = {"Uj adatfelvetele","Termékek kiirása","Termék törlése","Termék keresése","Kilépés"};
 					String[] menuBar = {"Create new product","List products","Delete product","Search for product","Exit"};

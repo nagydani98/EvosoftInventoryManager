@@ -142,7 +142,7 @@ public class CustomerParser {
 			}
 	}
 	
-	//az itt l�v� mindk�t keres�met�dust m�g lehet tovabb gondolni, pl partial matchekkel, vagy whitespace karakterek ignor�l�s�vla, toLowercase-el stb.
+	//az itt levo mindket keresomet�dust me lehet tovabb gondolni, pl partial matchekkel, vagy whitespace karakterek ignorolasaval, toLowercase-el stb.
 	
 	public List<Customer> findCostumers(String name) {
 		List<Customer> foundCustomersList = new ArrayList<Customer>();

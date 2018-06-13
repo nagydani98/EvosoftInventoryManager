@@ -193,7 +193,7 @@ public class Xml {
 	}
 	
 	public static boolean deleteNote(String productName, String note, String tag){
-		NodeList nodes = doc.getElementsByTagName(note);		//beállitjuk melyik note keresünk
+		NodeList nodes = doc.getElementsByTagName("item");		//beállitjuk melyik note keresünk
 
 	    for (int i = 0; i < nodes.getLength(); i++) {
 	      Element goods = (Element)nodes.item(i);
@@ -202,13 +202,15 @@ public class Xml {
 	      String dName = name.getTextContent();
 	      
 	      if (dName.equals(productName)) {					//összehasonlitjuk az elemet azzal a értékkel amit keresünk
-	    	 System.out.print("Sikeres\n");
-	    	 if(goods.getParentNode().removeChild(goods)!=null) {
-	    		 while( name.hasChildNodes() )
-	    			 name.removeChild( name.getFirstChild());
-	    	 }	//itt töröljük ki az elemet
+	    	  //itt töröljük ki az elemet
+	    	 goods.getParentNode().removeChild(goods);
 	    	 goods.normalize();
-	    	 if(doc.getElementsByTagName("product").item(0)==null) {
+	    	 
+	    	 Element pathsElement = (Element)doc.getElementsByTagName( "product" ).item( 0 );
+	    	 while( pathsElement.hasChildNodes() )					//kitörli az üres sorokat a product-ból
+	    		    pathsElement.removeChild( pathsElement.getFirstChild() );
+	    	 
+	    	 /*if(doc.getElementsByTagName("product").item(0)==null) {
 					Element rootElement = doc.createElement("product");
 					doc.appendChild(rootElement);
 			 }
@@ -221,8 +223,7 @@ public class Xml {
 					Element root = doc.getDocumentElement();
 					Element other = doc.createElement("other");
 					root.appendChild(other);
-			 }
-			doc.getDocumentElement().normalize();
+			 }*/
 	    	 xmlToString();						//vissza irjuk a fájlba amit változtatunk
 	    	 return true;
 			}

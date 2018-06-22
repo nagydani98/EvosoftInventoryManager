@@ -19,13 +19,13 @@ public class mainterminal {
 	
 	
 	
-	//menu metedusok
+	//menu methods
 	public static void menuOfItemsAndCusomers() {
 		int menunumber=0;
 		boolean menustate = true;
 		
 		do {
-		System.out.print("1. Customers\n2. Items\n3. Back\n Type in the menu's number you wish to enter:");
+		System.out.print("1. Customers\n2. Items\n3. Shopping\n4. Back Type in the menu's number you wish to enter:");
 		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		case 1:
@@ -36,6 +36,9 @@ public class mainterminal {
 			ProductMenu.theProductMenu_MainMenu();
 			break;
 		case 3:
+			//menuOfShopping();
+			break;
+		case 4:
 			menustate = false;
 			break;
 		default:
@@ -76,6 +79,34 @@ public class mainterminal {
 		}
 		}while(menustate);
 	}
+	
+	/*public static void menuOfShopping() {
+		int menunumber=0;
+		boolean menustate = true;
+		
+		do {
+		System.out.print(
+				"\n1. Choose costumer\n2. Choose item\3. Back to main menu\n4. Back\n Type in the operation's number you wish to perform:");
+		menunumber = TerminalReaders.readInt();
+		switch (menunumber) {
+		case 1:
+			//Choose costumer
+			break;
+		case 2:
+			//Choose item
+			break;
+		case 3:
+			menustate = false;
+			break;
+		case 4:
+			menustate = false;
+			break;
+		default:
+			System.out.println("\nUnrecognised input");
+		}
+		}while(menustate);
+		
+	}*/
 	
 	public static void menuOfCustomers() {
 		int menunumber=0;
@@ -120,19 +151,23 @@ public class mainterminal {
 			
 			System.out.println("Provide a taxnumber:");
 			int tax;
+			
 			do
 			  { 
 			      try {
-			          String s = scanner.nextLine();
-			          tax = Integer.parseInt(s);
+			    	  String s = scanner.nextLine();
+			    	  if (s.length()!=8) throw new RuntimeException();
+			    	  tax = Integer.parseInt(s);
 			          break;
 			      }
 			      catch (Exception e)
 			      {
-			          System.out.print("Couldn't parse input, please try again");
+			          System.out.print("The tax number is not valid, please try again");
 			      }
 			  }
 			  while (true);
+		
+			
 			
 			System.out.println("Provide a postcode:");
 			int postcode;
@@ -140,12 +175,13 @@ public class mainterminal {
 			  { 
 			      try {
 			          String s = scanner.nextLine();
+			          if (s.length()!=4) throw new RuntimeException();
 			          postcode = Integer.parseInt(s);
 			          break;
 			      }
 			      catch (Exception e)
 			      {
-			          System.out.print("Couldn't parse input, please try again");
+			          System.out.print("The postcode is not valid, please try again");
 			      }
 			  }
 			  while (true);
@@ -214,7 +250,7 @@ public class mainterminal {
 		parser.tryToSave(parser.getLoadedPeople()); 
 		}while(menustate);
 		scanner.close();
-		//Terminal.closeScanner();		//ha valaha vissza akarsz innen menni, akkor ezt a reszt torold ki és rakd a program vegere.
+		//Terminal.closeScanner();		//ha valaha vissza akarsz innen menni, akkor ezt a reszt torold ki es rakd a program vegere.
 	}
 }
 

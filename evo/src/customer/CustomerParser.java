@@ -31,7 +31,7 @@ public class CustomerParser {
 			Document doc = docBuilder.newDocument();
 			
 			
-			Element customerElement = doc.createElement("Users"); // duplan volt letrehozva element customers nevvel, itt
+			Element customerElement = doc.createElement("Users");
 			
 			
 			doc.appendChild(customerElement);
@@ -42,7 +42,7 @@ public class CustomerParser {
 				Customer customers = customer.get(i);
 				
 				
-				Element customersElement = doc.createElement("Customer"); // es itt, igy atneveztem az elozot
+				Element customersElement = doc.createElement("Customer");
 				customerElement.appendChild(customersElement);
 				
 				
@@ -95,7 +95,7 @@ public class CustomerParser {
 				
 				
 				for(int i = 0; i < customerElement.getChildNodes().getLength(); i++) {
-					if(customerElement.getChildNodes().item(i).getNodeName().equals("Customer")) { //nagyon fontos, hogy itt egyezzen a kiolvasando xml Element nevevel
+					if(customerElement.getChildNodes().item(i).getNodeName().equals("Customer")) {
 						
 						Element customersElement = (Element) customerElement.getChildNodes().item(i);
 						

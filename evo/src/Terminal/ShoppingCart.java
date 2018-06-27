@@ -126,6 +126,6 @@ public class ShoppingCart {
 	}
 	
 	public Element createProductTree(List<Products> productList) {
-		
+		return null;
 	}
 }

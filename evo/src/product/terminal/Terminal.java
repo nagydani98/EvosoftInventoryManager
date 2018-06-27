@@ -5,6 +5,9 @@ import java.util.InputMismatchException;
 import product.exceptions.*;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+
 public class Terminal{
 	private static Scanner scanner;
 	public static void openScanner() {
@@ -14,7 +17,7 @@ public class Terminal{
 	public static void closeScanner() {
 		scanner.close();
 	}
-	
+	//alma
 	public static class operation{
 		
 		public static int enterInteger(int min, int max) {
@@ -38,13 +41,6 @@ public class Terminal{
 				}
 			}while(notright);
 			return theIntegerValue;
-		}
-		
-		public static String enterStringWithoutSpecialChar(int min, int max) {
-			String newStr = enterString(min,max);
-			//é,í,ó,õ,á,ó,ü,û
-			newStr.replace("á", "a").replace("Á", "A").replace("é", "e").replace("É", "E").replace("í", "i").replace("Í", "I").replace("ó", "o").replace("Ó", "O");
-			return newStr.replace("õ", "o").replace("Õ", "o").replace("ü", "u").replace("Ü", "U").replace("Û", "U").replace("û", "U");
 		}
 		
 		public static boolean enterBoolean() {
@@ -84,7 +80,7 @@ public class Terminal{
 			return theDoubleValue;
 		}
 		
-		public static String enterString(int min, int max) {
+		public static String enterString(int min, int max, boolean specialCharacter) {
 				String theStringInput = null;
 				boolean notright = true;
 				do {
@@ -104,7 +100,38 @@ public class Terminal{
 						System.out.print("\nMin lenght is: "+min+" max lenght is:"+max+"\n");
 					}
 				}while(notright);
-				return theStringInput;
+				
+				if(specialCharacter) {
+					return theStringInput;
+				}else {
+					System.err.print("Unfortunatelly, the Hungarian special characters isn't available here!");
+					theStringInput = enterStringWithoutSpecialChar(theStringInput);
+					System.out.print("Date loaded in this form:"+theStringInput);
+					return theStringInput;
+				}
+		}
+		
+		//Jelszo beolvasasa igen eclipse terminal alat is, allitolag toketesen megy MAC-on is.
+		public static String enterSecred() {
+			final String password, message = "Please enter your password";
+			if( System.console() == null ) 
+			{ // inside IDE like Eclipse or NetBeans	- ezt a verziot lehet hasznalni eclipsebe is, kicsit problemas volt megtalalni
+			  final JPasswordField pf = new JPasswordField(); 	//- neve swing modszer, ha valaki kivancsi ra
+			  password = JOptionPane.showConfirmDialog( null, pf, message,
+			    JOptionPane.OK_CANCEL_OPTION,
+			    JOptionPane.QUESTION_MESSAGE ) == JOptionPane.OK_OPTION ? 
+			      new String( pf.getPassword() ) : "";
+			}
+			else 
+			  password = new String( System.console().readPassword( "%s> ", message ) );	//ez a modszer nem mukodik Eclipse IDE alatt
+			
+			return password;
+		}
+		
+		private static String enterStringWithoutSpecialChar(String newStr) {
+			//é,í,ó,õ,á,ó,ü,û
+			newStr.replace("á", "a").replace("Á", "A").replace("é", "e").replace("É", "E").replace("í", "i").replace("Í", "I").replace("ó", "o").replace("Ó", "O");
+			return newStr.replace("õ", "o").replace("Õ", "o").replace("ü", "u").replace("Ü", "U").replace("Û", "U").replace("û", "U");
 		}
 		
 		public static int writeDownMenuAndChooseOne(String menu[],boolean spacebreak) {
@@ -117,7 +144,6 @@ public class Terminal{
 						System.out.print("\n");
 					}
 				}
-				
 			}
 			System.out.print("Type in the menu's number you wish to enter:");
 			int choosed = enterInteger(1,menu.length);

@@ -21,7 +21,7 @@ public class Menu {
 		return theList;
 	}
 	
-	
+	//
 	public static class isearch {
 		private static List<Integer> letsfindTheRightElement(String criterium) throws NoSuchElementException {
 			int index = 0;
@@ -44,7 +44,7 @@ public class Menu {
 			
 			//System.out.print("Kérem irja be a termék nevét: ");
 			System.out.print("Please write the name of the product: ");
-			String name = Terminal.operation.enterString(4, 15);
+			String name = Terminal.operation.enterString(4, 15,true);
 			
 			try {
 				RightFindedIndexofList = letsfindTheRightElement(name);
@@ -65,54 +65,60 @@ public class Menu {
 		public static void display() {
 		int j = 0;
 		boolean continueDelete = true;
-		do {
-			if(j%5 == 0 || j == 0) {
-				for (int i = 0; i < theList.size(); i++) {
-					Products thistag = theList.get(i);
-					//System.out.print(i+1+".elem:\n");***********
-					System.out.print(i+1+".item:\n");
-					thistag.writeDownTheParameters();
-					if(i==theList.size()-1) {
-						System.out.println("\n");
+		
+		System.out.print("Are you sure you want continue delete:\n");
+		
+		if(Terminal.operation.enterBoolean()) {
+			do {
+				if(j%5 == 0 || j == 0) {
+					for (int i = 0; i < theList.size(); i++) {
+						Products thistag = theList.get(i);
+						//System.out.print(i+1+".elem:\n");***********
+						System.out.print(i+1+".item:\n");
+						thistag.writeDownTheParameters();
+						if(i==theList.size()-1) {
+							System.out.println("\n");
+						}
 					}
 				}
-			}
-			
-			//System.out.print("Melyik elemet szeretné törölni:");
-			System.out.print("Which item would you delete:");
-			int decision = Terminal.operation.enterInteger(1, theList.size()) - 1;
-			
-			//System.out.print("Biztos törölni szeretné az elemet:\n");
-			System.out.print("Are you sure to delete it:\n");
-			
-			if(Terminal.operation.enterBoolean()) {
-				Products thisProduct = theList.get(decision);
-				if(Xml.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
-					theList.remove(thisProduct);
-					//System.out.print("Törlés sikeres!\n");
-					System.out.print("Delete is successful!\n");
-				}else {
-					//System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
-					System.out.print("Delete is unsuccesful for this item: "+thisProduct.getName()+"\n");
+				
+				//System.out.print("Melyik elemet szeretné törölni:");
+				System.out.print("Which item would you delete:");
+				int decision = Terminal.operation.enterInteger(1, theList.size()) - 1;
+				
+				//System.out.print("Biztos törölni szeretné az elemet:\n");
+				System.out.print("Are you sure to delete this item:\n");
+				
+				if(Terminal.operation.enterBoolean()) {
+					Products thisProduct = theList.get(decision);
+					if(Xml.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
+						theList.remove(thisProduct);
+						//System.out.print("Törlés sikeres!\n");
+						System.out.print("Delete is successful!\n");
+					}else {
+						//System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
+						System.out.print("Delete is unsuccesful for this item: "+thisProduct.getName()+"\n");
+					}
 				}
-			}
-			if(theList.isEmpty()) {
-				//System.out.println("Nincs több item!")
-				System.out.println("No more item!");
-				continueDelete = false;
-			}else {
-				//System.out.println("Szeretné folytatni:");
-				System.out.println("Would you like to continue it:");
-				continueDelete = Terminal.operation.enterBoolean();
-			}
-				j++;
-			}while(continueDelete);
+				if(theList.isEmpty()) {
+					//System.out.println("Nincs több item!")
+					System.out.println("No more item!");
+					continueDelete = false;
+				}else {
+					//System.out.println("Szeretné folytatni:");
+					System.out.println("Would you like to continue it:");
+					continueDelete = Terminal.operation.enterBoolean();
+				}
+					j++;
+				}while(continueDelete);
+		}
+		
 		}
 	}
 	
 	
 	
-	static class echoProd{
+	public static class echoProd{
 		
 		public static void display() {
 			for (Products i : theList) {
@@ -135,10 +141,10 @@ public class Menu {
 					
 			//System.out.println("Irja be az eszköz nevét: ");
 			System.out.println("Please write the name of the product: ");
-			String name = Terminal.operation.enterString(2,15);
+			String name = Terminal.operation.enterString(2,15,true);
 			//System.out.println("Irja be a eszköz gyártóját: ");
 			System.out.println("Please write the name of the producer: ");
-			String producer = Terminal.operation.enterString(2,15);
+			String producer = Terminal.operation.enterString(2,15,true);
 			//System.out.println("Irja be a eszköz mennyiségét: ");
 			System.out.println("Please write the amount of the product: ");
 			int quantity = Terminal.operation.enterInteger(0,10000);
@@ -150,7 +156,7 @@ public class Menu {
 				case 1:
 					//System.out.println("Irja be az eszköz tipusát");
 					System.out.println("Please write type of the product");
-					String productType = Terminal.operation.enterString(3,15);
+					String productType = Terminal.operation.enterString(3,15,true);
 					newProduct = new Other(name, producer, quantity, price, productType);
 					break;
 				case 2:
@@ -159,7 +165,7 @@ public class Menu {
 					int cpuCore = Terminal.operation.enterInteger(100,5000);
 					//System.out.println("Irja be a foglalatot: ");
 					System.out.println("Please write the socket: ");
-					String socket = Terminal.operation.enterString(2,10);
+					String socket = Terminal.operation.enterString(2,10,true);
 					System.out.println("Please write the numbers of the cpu cores: ");
 					int coreNumber = Terminal.operation.enterInteger(1,16);
 					//System.out.println("Irja be a gyártási tekniát(nm): ");
@@ -184,7 +190,7 @@ public class Menu {
 					int busSpeed = Terminal.operation.enterInteger(250,8200);
 					//System.out.println("Irja be a memória bussz tipúsát: ");
 					System.out.println("Please write the type of memory: ");
-					String busType= Terminal.operation.enterString(2,10);
+					String busType= Terminal.operation.enterString(2,10,true);
 							
 					newProduct = new ComponentsGPU(name, producer, quantity, price, gpuCore, ram, memoriaSpeed, busSpeed, busType);
 							

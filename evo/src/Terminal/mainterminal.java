@@ -25,7 +25,7 @@ public class mainterminal {
 		boolean menustate = true;
 		
 		do {
-		System.out.print("1. Customers\n2. Items\n3. Shopping\n4. Back Type in the menu's number you wish to enter:");
+		System.out.print("1. Customers\n2. Items\n3. Shopping\n4. Exit \n Type in the menu's number you wish to enter:");
 		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		case 1:
@@ -47,7 +47,7 @@ public class mainterminal {
 		}while(menustate);
 	}
 	
-	public static void menuOfItems() {
+	/*public static void menuOfItems() {
 		int menunumber=0;
 		boolean menustate = true;
 		
@@ -78,27 +78,52 @@ public class mainterminal {
 			System.out.println("\nUnrecognised input");
 		}
 		}while(menustate);
-	}
+	}*/
 	
 	public static void menuOfShopping() {
 		int menunumber=0;
 		boolean menustate = true;
-		
+		CustomerParser customerParser = new CustomerParser();
+		Scanner scanner = new Scanner(System.in);
 		do {
+			if (!customerParser.tryToLoad()) 
+				System.out.println("Error loading customer xml, perhaps the file does not exist!\n");
+			
 		System.out.print(
-				"\n1. Choose costumer\n2. Choose item\3. Back to main menu\n4. Back\n Type in the operation's number you wish to perform:");
+				"\n1. List customers\n2. Search for customer\n3. List products\n4. Search for product\n5. Add product to cart\n6. Create shopping cart\n7. Back\n Type in the operation's number you wish to perform:");
+		
 		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		case 1:
-			//Choose costumer
+			customerParser.printCustomerList();
 			break;
 		case 2:
-			//Choose item
+			System.out.println("\nPlease provide a name to search for: ");
+			String name2 = scanner.nextLine();
+			
+			List<Customer> foundCustomers= customerParser.findCostumers(name2);
+			System.out.println("Customers with that name: ");
+			if(!foundCustomers.isEmpty()) {
+				for (Customer customer : foundCustomers) {
+				System.out.println(customer.toString());
+				}
+			}
+			else System.out.println("There is no customer with that name");
 			break;
 		case 3:
 			menustate = false;
 			break;
 		case 4:
+			menustate = false;
+			break;
+		case 5:
+			//cartMenu()
+			menustate = false;
+			break;
+		case 6:
+			menustate = false;
+			break;
+		case 7:
 			menustate = false;
 			break;
 		default:
@@ -119,7 +144,7 @@ public class mainterminal {
 				System.out.println("Error loading xml, perhaps the file does not exist!\n");
 				
 			System.out.print(
-				"\n1. List cusomers\n2. Search for customer\n3. Create new customer\n4. Delete customer\n5. Back to main menu\n6. Back\n Type in the operation's number you wish to perform:");
+				"\n1. List cusomers\n2. Search for customer\n3. Create new customer\n4. Delete customer\n5. Back\n Type in the operation's number you wish to perform:");
 		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		
@@ -256,16 +281,13 @@ public class mainterminal {
 		case 5:
 			menustate = false;
 			break;
-		case 6:
-			menustate = false;
-			break;
 		default:
 			System.out.println("\nUnrecognised input");
 		}
 		
 		parser.tryToSave(parser.getLoadedPeople()); 
 		}while(menustate);
-		scanner.close();
+		//scanner.close();
 		//Terminal.closeScanner();		//ha valaha vissza akarsz innen menni, akkor ezt a reszt torold ki es rakd a program vegere.
 	}
 }

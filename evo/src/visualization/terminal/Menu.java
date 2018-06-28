@@ -1,15 +1,17 @@
-package product.terminal;
+package visualization.terminal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import product.classes.ComponentsCPU;
-import product.classes.ComponentsGPU;
-import product.classes.Other;
-import product.classes.Products;
-import product.exceptions.NoSuchElementException;
-import product.xml.Xml;
-import product.terminal.Terminal;
+import classes.product.ComponentsCPU;
+import classes.product.ComponentsGPU;
+import classes.product.Other;
+import classes.product.Products;
+import classes.order.*;
+import exceptions.NoProductAvailableException;
+import exceptions.NoSuchElementException;
+import fileOpperations.Xml;
+import visualization.terminal.Terminal;
 
 public class Menu {
 	private static List<Products> theList = new ArrayList<Products>();
@@ -43,10 +45,12 @@ public class Menu {
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
 			//System.out.print("Kérem irja be a termék nevét: ");
-			System.out.print("Please write the name of the product: ");
-			String name = Terminal.operation.enterString(4, 15,true);
 			
 			try {
+				if(theList.isEmpty()) throw new NoProductAvailableException();
+				System.out.print("Please write the name of the product: ");
+				String name = Terminal.operation.enterString(4, 15,true);
+				
 				RightFindedIndexofList = letsfindTheRightElement(name);
 				for(int i : RightFindedIndexofList) {
 					Products local = theList.get(i);
@@ -54,6 +58,9 @@ public class Menu {
 					System.out.println("\n");
 				}
 			} catch (NoSuchElementException e) {
+				e.printStackTrace();
+			} catch (NoProductAvailableException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -91,7 +98,7 @@ public class Menu {
 				
 				if(Terminal.operation.enterBoolean()) {
 					Products thisProduct = theList.get(decision);
-					if(Xml.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
+					if(Xml.product.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
 						theList.remove(thisProduct);
 						//System.out.print("Törlés sikeres!\n");
 						System.out.print("Delete is successful!\n");
@@ -121,20 +128,25 @@ public class Menu {
 	public static class echoProd{
 		
 		public static void display() {
-			for (Products i : theList) {
-				i.writeDownTheParameters();
-				System.out.print("\n");
-			}
-			if(theList.isEmpty()) {
-				//System.out.print("Nincs termék!\n");
-				System.out.print("We don't have product!\n");
+			try {
+				if(theList.isEmpty()) {
+					//System.out.print("Nincs termék!\n");
+					throw new NoProductAvailableException();
+				}
+			
+				for (Products i : theList) {
+					i.writeDownTheParameters();
+					System.out.print("\n");
+				}
+			}catch(NoProductAvailableException e) {
+				e.printStackTrace();
 			}
 		}
 	}
 	
 	
 	
-	static class inputProd{
+	public static class inputProd{
 		
 		private static Products readTheNewProducts(int type){
 			Products newProduct = null;
@@ -223,11 +235,80 @@ public class Menu {
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menuthree,false);
 					if(menuPoint == 1) {
 						theList.addAll(listOfNewProducts);
-						Xml.writer(listOfNewProducts);
+						Xml.product.writer(listOfNewProducts);
 						break;
 					}
 				}
 			}
+		}
+	}
+	
+	public static class buying{
+		public static void display() {
+			boolean continueBuying = true;
+			String name;
+			
+			do {
+			try {
+				if(theList.isEmpty()) {
+					continueBuying = false;
+					throw new NoProductAvailableException();
+				}else {
+					System.out.print("Do you want to continue the buying?\n");
+					continueBuying = Terminal.operation.enterBoolean();
+				}
+				
+				int j = 0;
+				if(continueBuying) {
+					List<CustomerOrder> BuyingList = new ArrayList<CustomerOrder>();
+					
+					System.out.print("Please write a any name:");  // ez a ket sor majd kifog kerulni, mivel semmi szukseg ra. Helyere a felhasznalo regisztralt neve fog kerulni!
+					name = Terminal.operation.enterString(3, 15,false);
+					
+					if(j%5 == 0 || j == 0) {
+						for (int i = 0; i < theList.size(); i++) {
+							Products thistag = theList.get(i);
+							//System.out.print(i+1+".elem:\n");***********
+							System.out.print(i+1+".item:\n");
+							thistag.writeDownTheParameters();
+							if(i==theList.size()-1) {
+								System.out.println("\n");
+							}
+						}
+					}
+					int thisProductIWantBuy = Terminal.operation.enterInteger(1, theList.size());
+					int count = 1;
+					
+					CustomerOrder newOrder = new CustomerOrder(name,theList.get(thisProductIWantBuy).getName(),count);
+					BuyingList.add(newOrder);
+					
+					System.out.println("Do you want to continue the buying?");
+					continueBuying = Terminal.operation.enterBoolean();
+					
+					if(!continueBuying) {
+						if(BuyingList.size()>1) {
+							System.out.println("Are you sure you want to buy these products?");
+						}else {
+							System.out.println("Are you sure you want to buy this product?");
+						}
+						
+						if(Terminal.operation.enterBoolean()) {
+							
+						}
+						
+					}
+					
+					j++;
+				}
+				
+				}catch(NoProductAvailableException e) {
+					System.out.print("Please visit again a little bit later!\n");
+					e.printStackTrace();
+				}
+			}while(continueBuying);
+		}
+		public static void login() {
+			
 		}
 	}
 }

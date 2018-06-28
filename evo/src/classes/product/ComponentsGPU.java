@@ -1,4 +1,4 @@
-package product.classes;
+package classes.product;
 
 public class ComponentsGPU extends ComponentsPC{
 	private int clock;

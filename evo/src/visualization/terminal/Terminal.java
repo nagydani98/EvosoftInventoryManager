@@ -1,12 +1,13 @@
-package product.terminal;
+package visualization.terminal;
 
 import java.io.Console;
 import java.util.InputMismatchException;
-import product.exceptions.*;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+
+import exceptions.*;
 
 public class Terminal{
 	private static Scanner scanner;

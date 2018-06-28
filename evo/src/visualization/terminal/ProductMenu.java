@@ -1,12 +1,12 @@
-package product.terminal;
+package visualization.terminal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import product.classes.Products;
-import product.exceptions.NoProductAvailableException;
-import product.terminal.Menu;
-import product.xml.Xml;
+import classes.product.Products;
+import exceptions.NoProductAvailableException;
+import fileOpperations.Xml;
+import visualization.terminal.Menu;
 
 public class ProductMenu {
 	private static List<Products> theList = new ArrayList<Products>();
@@ -16,8 +16,8 @@ public class ProductMenu {
 		boolean fileExist = false;
 		
 		Terminal.openScanner();
-		fileExist = Xml.open();
-		theList = Xml.reader();
+		fileExist = Xml.product.open();
+		theList = Xml.product.reader();
 		Menu.setList(theList);
 		
 		do {

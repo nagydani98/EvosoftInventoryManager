@@ -1,4 +1,4 @@
-package product.exceptions;
+package exceptions;
 
 @SuppressWarnings("serial")
 public class LessThanMinNumException extends Exception{

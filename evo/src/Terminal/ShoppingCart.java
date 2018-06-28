@@ -16,8 +16,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import classes.product.Products;
 import customer.*;
-import product.classes.Products;
 
 //for now, I tried giving a basic outline of how I imagine the purchase process is going to go down
 public class ShoppingCart {

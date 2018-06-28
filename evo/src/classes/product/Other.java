@@ -1,4 +1,4 @@
-package product.classes;
+package classes.product;
 
 public class Other extends Products{
 	public Other(String name,String producer,int quantity, int price, String type) {

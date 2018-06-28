@@ -1,4 +1,4 @@
-package product.classes;
+package classes.product;
 
 public class ComponentsCPU extends ComponentsPC{
 	private int clock;

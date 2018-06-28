@@ -1,4 +1,4 @@
-package product.classes;
+package classes.product;
 
 public abstract class Products {
 	private String name; 		//termék neve

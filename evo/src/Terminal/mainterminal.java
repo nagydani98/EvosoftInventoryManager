@@ -1,7 +1,9 @@
 package Terminal;
-import product.terminal.ProductMenu;
 import customer.*;
-import product.terminal.Terminal;
+import visualization.*;
+import visualization.terminal.Menu;
+import visualization.terminal.ProductMenu;
+import visualization.terminal.Terminal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -83,16 +85,16 @@ public class mainterminal {
 	public static void menuOfShopping() {
 		int menunumber=0;
 		boolean menustate = true;
+		Terminal.openScanner();
 		CustomerParser customerParser = new CustomerParser();
 		Scanner scanner = new Scanner(System.in);
 		do {
 			if (!customerParser.tryToLoad()) 
 				System.out.println("Error loading customer xml, perhaps the file does not exist!\n");
 			
-		System.out.print(
-				"\n1. List customers\n2. Search for customer\n3. List products\n4. Search for product\n5. Add product to cart\n6. Create shopping cart\n7. Back\n Type in the operation's number you wish to perform:");
+		String[] ChoseValue= {"List customers","Search for customer","List products","Search for product","Add product to cart","Back"};
+		menunumber = Terminal.operation.writeDownMenuAndChooseOne(ChoseValue, true);
 		
-		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		case 1:
 			customerParser.printCustomerList();
@@ -111,19 +113,16 @@ public class mainterminal {
 			else System.out.println("There is no customer with that name");
 			break;
 		case 3:
-			menustate = false;
+			Menu.echoProd.display();
 			break;
 		case 4:
-			menustate = false;
+			Menu.isearch.Display();
 			break;
 		case 5:
 			//cartMenu()
-			menustate = false;
+			Menu.buying.display();
 			break;
 		case 6:
-			menustate = false;
-			break;
-		case 7:
 			menustate = false;
 			break;
 		default:

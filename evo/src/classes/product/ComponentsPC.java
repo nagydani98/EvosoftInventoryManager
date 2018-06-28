@@ -1,4 +1,4 @@
-package product.classes;
+package classes.product;
 
 public class ComponentsPC extends Products{
 	public ComponentsPC(String name,String producer,int quantity, int price) {

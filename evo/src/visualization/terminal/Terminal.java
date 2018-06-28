@@ -81,7 +81,7 @@ public class Terminal{
 			return theDoubleValue;
 		}
 		
-		public static String enterString(int min, int max, boolean specialCharacter) {
+		public static String enterString(int min, int max, boolean availableSpecialCharacter) {
 				String theStringInput = null;
 				boolean notright = true;
 				do {
@@ -102,14 +102,33 @@ public class Terminal{
 					}
 				}while(notright);
 				
-				if(specialCharacter) {
+				if(availableSpecialCharacter) {
 					return theStringInput;
 				}else {
-					System.err.print("Unfortunatelly, the Hungarian special characters isn't available here!");
-					theStringInput = enterStringWithoutSpecialChar(theStringInput);
-					System.out.print("Date loaded in this form:"+theStringInput);
+					if(isItContainSpecialCharacter(theStringInput)) {
+						System.out.print("Unfortunatelly, the Hungarian special characters isn't available here!\n");
+						theStringInput = enterStringWithoutSpecialChar(theStringInput);
+						System.out.print("Date loaded in this form:"+theStringInput+"\n");
+						return theStringInput;
+					}
 					return theStringInput;
 				}
+		}
+		
+		private static boolean isItContainSpecialCharacter(String newStr) {
+			char[] criterium = {'á','é','í','õ','û','ü','ó'};
+			for(int i = 0;i<criterium.length;i++) {
+				if(newStr.matches("(.*)"+criterium[i]+"(.*)"))return true;
+			}
+			
+			return false;
+		}
+		
+		private static String enterStringWithoutSpecialChar(String newStr) {
+			//é,í,ó,õ,á,ó,ü,û
+			newStr = newStr.replace("á", "a").replace("Á", "A").replace("é", "e").replace("É", "E").replace("í", "i").replace("Í", "I").replace("ó", "o").replace("Ó", "O");
+			newStr = newStr.replace("õ", "o").replace("Õ", "o").replace("ü", "u").replace("Ü", "U").replace("Û", "U").replace("û", "U");
+			return newStr;
 		}
 		
 		//Jelszo beolvasasa igen eclipse terminal alat is, allitolag toketesen megy MAC-on is.
@@ -128,12 +147,7 @@ public class Terminal{
 			
 			return password;
 		}
-		
-		private static String enterStringWithoutSpecialChar(String newStr) {
-			//é,í,ó,õ,á,ó,ü,û
-			newStr.replace("á", "a").replace("Á", "A").replace("é", "e").replace("É", "E").replace("í", "i").replace("Í", "I").replace("ó", "o").replace("Ó", "O");
-			return newStr.replace("õ", "o").replace("Õ", "o").replace("ü", "u").replace("Ü", "U").replace("Û", "U").replace("û", "U");
-		}
+
 		
 		public static int writeDownMenuAndChooseOne(String menu[],boolean spacebreak) {
 			for(int i = 0; i < menu.length; i++) {

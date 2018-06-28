@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -360,33 +363,39 @@ public class Xml {
 			return fileLocation;
 		}
 		
-	}
-	
-	public static void writer(List <CustomerOrder> newOrders){
-		for(CustomerOrder order : newOrders) {
-			Element root = doc.getDocumentElement();
-			Element type =  (Element) root .getElementsByTagName("Order");
-			
-			Element item = doc.createElement("item");
-			type.appendChild(item);
-			
-			
-			Element outName = doc.createElement("buyer_name");
-			outName.setTextContent(order.getName());	
-			item.appendChild(outName);
-			
-			Element outProducer = doc.createElement("product");
-			outProducer.setTextContent(order.getProduct());	
-			item.appendChild(outProducer);
-			
-			Element outQuantity = doc.createElement("quantity");
-			outQuantity.setTextContent(Integer.valueOf(order.getQuantity()).toString());
-			item.appendChild(outQuantity);
-			
-			Element outPrice = doc.createElement("price");
-			outPrice.setTextContent(Integer.valueOf(order.getPrice()).toString());
-			item.appendChild(outPrice);
+		public static void writer(List <CustomerOrder> newOrders){
+			for(CustomerOrder order : newOrders) {
+				
+				Node type = doc.getElementsByTagName("order").item(0);
+				
+				Element item = doc.createElement("item");
+				type.appendChild(item);
+				
+				
+				Element outName = doc.createElement("buyer_name");
+				outName.setTextContent(order.getName());	
+				item.appendChild(outName);
+				
+				Element outProducer = doc.createElement("product");
+				outProducer.setTextContent(order.getProduct());	
+				item.appendChild(outProducer);
+				
+				Element outQuantity = doc.createElement("quantity");
+				outQuantity.setTextContent(Integer.valueOf(order.getQuantity()).toString());
+				item.appendChild(outQuantity);
+				
+				LocalDate localDate = order.getOrderTime();
+				Element outOrderDate = doc.createElement("order_date");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.LLLL.dd");
+				String formattedString =localDate.format(formatter);
+				outOrderDate.setTextContent(formattedString);
+				item.appendChild(outOrderDate);
+				
+				Element outPrice = doc.createElement("price");
+				outPrice.setTextContent(Integer.valueOf(order.getPrice()).toString());
+				item.appendChild(outPrice);
+			}
+			xmlToString();
 		}
-		xmlToString();
 	}
 }

@@ -261,8 +261,7 @@ public class Menu {
 				int j = 0;
 				if(continueBuying) {
 					List<CustomerOrder> BuyingList = new ArrayList<CustomerOrder>();
-					
-					System.out.print("Please write a any name:");  // ez a ket sor majd kifog kerulni, mivel semmi szukseg ra. Helyere a felhasznalo regisztralt neve fog kerulni!
+					System.out.print("Please write the name of the order or orders and register in that name:\n");  // ez a ket sor majd kifog kerulni, mivel semmi szukseg ra. Helyere a felhasznalo regisztralt neve fog kerulni!
 					name = Terminal.operation.enterString(3, 15,false);
 					
 					if(j%5 == 0 || j == 0) {
@@ -276,10 +275,11 @@ public class Menu {
 							}
 						}
 					}
-					int thisProductIWantBuy = Terminal.operation.enterInteger(1, theList.size());
+					System.out.print("Which product do you want to buy:");
+					int thisProductIWantBuy = Terminal.operation.enterInteger(1, theList.size())-1;
 					int count = 1;
 					
-					CustomerOrder newOrder = new CustomerOrder(name,theList.get(thisProductIWantBuy).getName(),count);
+					CustomerOrder newOrder = new CustomerOrder(name,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
 					BuyingList.add(newOrder);
 					
 					System.out.println("Do you want to continue the buying?");
@@ -293,7 +293,8 @@ public class Menu {
 						}
 						
 						if(Terminal.operation.enterBoolean()) {
-							
+							Xml.buyerOrder.open();
+							Xml.buyerOrder.writer(BuyingList);
 						}
 						
 					}

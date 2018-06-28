@@ -1,5 +1,6 @@
 package Terminal;
 import customer.*;
+import fileOpperations.Xml;
 import visualization.*;
 import visualization.terminal.Menu;
 import visualization.terminal.ProductMenu;
@@ -11,6 +12,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import classes.product.Products;
 
 public class mainterminal {
 	
@@ -25,6 +28,14 @@ public class mainterminal {
 	public static void menuOfItemsAndCusomers() {
 		int menunumber=0;
 		boolean menustate = true;
+		//Ezt a reszt en irtam be Megyeri, itt nyitom meg a xml es olvasom be az adatokat utana beallitom Product menu es Vasarlas menut is ahol termeket szeretnenk venni
+		Terminal.openScanner();
+		List<Products> theList = new ArrayList<Products>();
+		if(Xml.product.open()) {
+			theList = Xml.product.reader();
+			ProductMenu.setList(theList);
+			Menu.setList(theList);
+		}
 		
 		do {
 		System.out.print("1. Customers\n2. Items\n3. Shopping\n4. Exit \n Type in the menu's number you wish to enter:");
@@ -85,14 +96,15 @@ public class mainterminal {
 	public static void menuOfShopping() {
 		int menunumber=0;
 		boolean menustate = true;
-		Terminal.openScanner();
+		
+		
 		CustomerParser customerParser = new CustomerParser();
 		Scanner scanner = new Scanner(System.in);
 		do {
 			if (!customerParser.tryToLoad()) 
 				System.out.println("Error loading customer xml, perhaps the file does not exist!\n");
 			
-		String[] ChoseValue= {"List customers","Search for customer","List products","Search for product","Add product to cart","Back"};
+		String[] ChoseValue= {"List customers","Search for customer","List products","Search for product","Add product to cart","Create shopping cart","Back"};
 		menunumber = Terminal.operation.writeDownMenuAndChooseOne(ChoseValue, true);
 		
 		switch (menunumber) {
@@ -120,9 +132,14 @@ public class mainterminal {
 			break;
 		case 5:
 			//cartMenu()
-			Menu.buying.display();
+			Menu.buying.display();		// ezt a reszt adtam hozza, gondolom az adatokat szereted volna beallitani a 6-os pontba, nos en ugy gondoltam nincs login rendszer meg.
+			break;						// Ezert kicsit fajdalmas egyesevel beleteni minden vasarlas megkezdesenel a szemelyes adatokat, ezert egyszeruen csak a nevet kertem be a felhasznalotol, nincs ellenorzes hogy valoban benne van-e customerbe meg.
+										// Azon lesz rogzitve a vasarlas, ugy csinaltam meg a CustomerOrder osztalyt, hogy benne vannak a tobbi adatok. De nem hasznalja oket, igy ha kesz a regisztracio. Akkor az adatokat majd egyszeruen hozza adjuk a regisztracihoz ha kell
+		
+		case 6:					
+			menustate = false;
 			break;
-		case 6:
+		case 7:
 			menustate = false;
 			break;
 		default:

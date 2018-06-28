@@ -3,5 +3,12 @@
 <componentpc/>
 
 
-<other/>
+<other>
+    <item type="kalapács">
+      <name>kalapacs</name>
+      <producer>Németország</producer>
+      <quantity>4</quantity>
+      <price>2000</price>
+    </item>
+  </other>
 </product>

@@ -11,23 +11,23 @@ import visualization.terminal.Menu;
 public class ProductMenu {
 	private static List<Products> theList = new ArrayList<Products>();
 	
+	public static void setList(List<Products> input) {
+		theList = input;
+	}
+	
 	public static void theProductMenu_MainMenu() {
 		boolean continueTask = true;
-		boolean fileExist = false;
 		
-		Terminal.openScanner();
-		fileExist = Xml.product.open();
+		/*Terminal.openScanner();
 		theList = Xml.product.reader();
-		Menu.setList(theList);
+		*/
 		
 		do {
 			boolean noMoreProd = false;
 			try {
 				if(theList.isEmpty()) {
 					throw new NoProductAvailableException();
-				}
-				
-				if(fileExist) {
+				}else {
 					//String[] menuBar = {"Uj adatfelvetele","Termékek kiirása","Termék törlése","Termék keresése","Kilépés"};
 					String[] menuBar = {"Create new product","List products","Delete product","Search for product","Exit"};
 					int decision = Terminal.operation.writeDownMenuAndChooseOne(menuBar, true);

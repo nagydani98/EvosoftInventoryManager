@@ -106,7 +106,7 @@ public class Terminal{
 					return theStringInput;
 				}else {
 					if(isItContainSpecialCharacter(theStringInput)) {
-						System.out.print("Unfortunatelly, the Hungarian special characters isn't available here!\n");
+						System.out.print("Unfortunately, the Hungarian special characters aren't available here!\n");
 						theStringInput = enterStringWithoutSpecialChar(theStringInput);
 						System.out.print("Date loaded in this form:"+theStringInput+"\n");
 						return theStringInput;

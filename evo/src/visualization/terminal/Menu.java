@@ -275,17 +275,20 @@ public class Menu {
 							}
 						}
 					}
-					System.out.print("Which product do you want to buy:");
-					int thisProductIWantBuy = Terminal.operation.enterInteger(1, theList.size())-1;
-					int count = 1;
+					System.out.print("Which product do you want to buy? (if you write zero, you'll exit):");
+					int thisProductIWantBuy = Terminal.operation.enterInteger(0, theList.size())-1;
 					
-					CustomerOrder newOrder = new CustomerOrder(name,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
-					BuyingList.add(newOrder);
+					if(thisProductIWantBuy !=-1) {
+						int count = 1;
+						CustomerOrder newOrder = new CustomerOrder(name,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
+						BuyingList.add(newOrder);
 					
-					System.out.println("Do you want to continue the buying?");
-					continueBuying = Terminal.operation.enterBoolean();
-					
-					if(!continueBuying) {
+						System.out.println("Do you want to continue the buying?");
+						continueBuying = Terminal.operation.enterBoolean();
+					}else {
+						continueBuying = false;
+					}
+					if(!continueBuying && thisProductIWantBuy !=-1) {
 						if(BuyingList.size()>1) {
 							System.out.println("Are you sure you want to buy these products?");
 						}else {

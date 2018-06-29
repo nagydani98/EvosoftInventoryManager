@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<order>
+  <item>
+    <buyer_name>alma</buyer_name>
+    <product>kalapacs</product>
+    <quantity>1</quantity>
+    <order_date>28 június 2018</order_date>
+    <price>2000</price>
+  </item>
+<item>
+    <buyer_name>alma</buyer_name>
+    <product>kalapacs</product>
+    <quantity>1</quantity>
+    <order_date>2018.június.28</order_date>
+    <price>2000</price>
+  </item>
+</order>

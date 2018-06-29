@@ -5,7 +5,6 @@ import java.util.List;
 
 import classes.product.Products;
 import exceptions.NoProductAvailableException;
-import fileOpperations.Xml;
 import visualization.terminal.Menu;
 
 public class ProductMenu {

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <order>
   <item>
-    <buyer_name>alma</buyer_name>
-    <product>kalapacs</product>
-    <quantity>1</quantity>
-    <order_date>28 június 2018</order_date>
-    <price>2000</price>
+    <buyer_name>Lilla</buyer_name>
+    <product>Rose</product>
+    <quantity>3</quantity>
+    <order_date>2018 July 3.</order_date>
+    <price>3000</price>
   </item>
 <item>
-    <buyer_name>alma</buyer_name>
-    <product>kalapacs</product>
+    <buyer_name>Denes</buyer_name>
+    <product>Merlot</product>
     <quantity>1</quantity>
-    <order_date>2018.június.28</order_date>
-    <price>2000</price>
+    <order_date>2018 June 26.</order_date>
+    <price>5600</price>
   </item>
 </order>

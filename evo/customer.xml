@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Users>
-<Customer Email="kol@los.com" Name="Albert" PostCode="9894" ShopNumber="6989" Tax="5654"/>
-<Customer Email="aa@ll.com" Name="Molli " PostCode="5555" ShopNumber="65954" Tax="8998952"/>
-<Customer Email="lok@am.com" Name="Dénes" PostCode="4444" ShopNumber="5984" Tax="568949"/>
-<Customer Email="del@del.com" Name="Albert" PostCode="6666" ShopNumber="3299" Tax="595495"/>
-<Customer Email="a516a@asd65.com" Name="Albert" PostCode="622662" ShopNumber="262662" Tax="62626"/>
-<Customer Email="gfhs55" Name="Albert Fowney" PostCode="9999" ShopNumber="618999" Tax="698522"/>
-<Customer Email="asd@asd.com" Name="Laszlo" PostCode="1234" ShopNumber="123" Tax="12345678"/>
+<Customer Email="laszlo.kovacs@gmail.com" Name="Laszlo" PostCode="3704" ShopNumber="12" Tax="83579810"/>
+<Customer Email="anna.m@yahoo.com" Name="Anna" PostCode="3530" ShopNumber="26" Tax="82127920"/>
+<Customer Email="deneske67@freemail.hu" Name="Dénes" PostCode="1063" ShopNumber="142" Tax="80579897"/>
+<Customer Email="lillavarga@gmail.com" Name="Lilla" PostCode="1529" ShopNumber="211" Tax="88479820"/>
 </Users>

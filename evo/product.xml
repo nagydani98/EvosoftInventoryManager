@@ -4,11 +4,26 @@
 
 
 <other>
-    <item type="kalapács">
-      <name>kalapacs</name>
-      <producer>Németország</producer>
-      <quantity>4</quantity>
-      <price>2000</price>
+    <item type="Soft drink">
+      <name>Cola</name>
+      <producer>Coca Cola</producer>
+      <quantity>18</quantity>
+      <price>300</price>
     </item>
-  </other>
+    <item type="Beer">
+    	<name>Gosser</name>
+    	<producer>Heineken</producer>
+    	<quantity>23</quantity>
+    	<price>355</price></item>
+    <item type="Wine">
+    	<name>Merlot</name>
+    	<producer>Sauska</producer>
+    	<quantity>52</quantity>
+    	<price>3000</price></item>
+    <item type="Champagne">
+    	<name>Charmant</name>
+    	<producer>Torley</producer>
+    	<quantity>11</quantity>
+    	<price>2000</price></item>
+</other>
 </product>

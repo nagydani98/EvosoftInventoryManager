@@ -138,7 +138,8 @@ public class CustomerParser {
 	public void printCustomerList() { //automatikusan kiirja az elmentett neveket es adjaszamot
 		if(!this.loadedCustomer.isEmpty())
 			for (int i = 0; i < this.loadedCustomer.size(); i++) {
-				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCustomer.get(i).getName(), this.loadedCustomer.get(i).getTax()));
+				//System.out.println(String.format("%d. %s: %d", i+1, this.loadedCustomer.get(i).getName(), this.loadedCustomer.get(i).getTax()));
+				System.out.println(i+1+"." + this.loadedCustomer.get(i).getName()+ ":" +"\n" +"Tax: " + + this.loadedCustomer.get(i).getTax()+ "\n" +"Email: " + this.loadedCustomer.get(i).getEmail() +"\n" +"Post code: " + this.loadedCustomer.get(i).getPostCode()+"\n" +"Shop number: " + this.loadedCustomer.get(i).getShopNumber()+"\n");
 			}
 	}
 	

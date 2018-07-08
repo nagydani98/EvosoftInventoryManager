@@ -148,7 +148,7 @@ public class CustomerParser {
 	public List<Customer> findCostumers(String name) {
 		List<Customer> foundCustomersList = new ArrayList<Customer>();
 		for (int i = 0; i < loadedCustomer.size(); i++) {
-			if(loadedCustomer.get(i).getName().contains(name))
+			if(loadedCustomer.get(i).getName().toLowerCase().contains(name.toLowerCase()))
 				foundCustomersList.add(loadedCustomer.get(i));
 		}
 		return foundCustomersList;

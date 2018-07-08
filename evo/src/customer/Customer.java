@@ -1,5 +1,6 @@
 package customer;
 
+import java.util.Scanner;
 
 public class Customer {
 	
@@ -71,6 +72,169 @@ public class Customer {
 			return true;
 
 		return false;
+	}
+	
+	public static Customer registerNewCustomer() {
+		System.out.println("Registering new customer, please provide a name: ");
+		Scanner scanner = new Scanner(System.in);
+		
+		String name = scanner.nextLine();
+		
+		System.out.println("Provide a taxnumber:");
+		int tax;
+		
+		do
+		  { 
+		      try {
+		    	  String s = scanner.nextLine();
+		    	  if (s.length()!=8) throw new RuntimeException();
+		    	  tax = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("The tax number is not valid, please try again!\n");
+		      }
+		  }
+		  while (true);
+	
+		
+		
+		System.out.println("Provide a postcode: ");
+		int postcode;
+		do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          if (s.length()!=4) throw new RuntimeException();
+		          postcode = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("The postcode is not valid, please try again!\n");
+		      }
+		  }
+		  while (true);
+		
+		System.out.println("Provide a shopnumber: ");
+		int shopnumber;
+		do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          shopnumber = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Couldn't parse input, please try again!\n");
+		      }
+		  }
+		  while (true);
+		
+		String email;
+		do
+		  { 
+		      try {
+		System.out.println("Provide an e-mail: ");
+		 email = scanner.nextLine();
+		
+		String emailForm = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+           java.util.regex.Pattern p = java.util.regex.Pattern.compile(emailForm);
+           java.util.regex.Matcher m = p.matcher(email);
+           if( !m.matches()) throw new Exception();
+           break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Email format is not valid, please try again!\n");
+		      }
+		  }
+		  while (true);
+		
+		Customer customer = new Customer(name, tax, postcode, shopnumber, email);
+		return customer;
+	}
+	
+	
+	public static Customer registerNewCustomer(String name) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Provide a taxnumber:");
+		int tax;
+		
+		do
+		  { 
+		      try {
+		    	  String s = scanner.nextLine();
+		    	  if (s.length()!=8) throw new RuntimeException();
+		    	  tax = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("The tax number is not valid, please try again!\n");
+		      }
+		  }
+		  while (true);
+	
+		
+		
+		System.out.println("Provide a postcode: ");
+		int postcode;
+		do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          if (s.length()!=4) throw new RuntimeException();
+		          postcode = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("The postcode is not valid, please try again!\n");
+		      }
+		  }
+		  while (true);
+		
+		System.out.println("Provide a shopnumber: ");
+		int shopnumber;
+		do
+		  { 
+		      try {
+		          String s = scanner.nextLine();
+		          shopnumber = Integer.parseInt(s);
+		          break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Couldn't parse input, please try again!\n");
+		      }
+		  }
+		  while (true);
+		
+		String email;
+		do
+		  { 
+		      try {
+		System.out.println("Provide an e-mail: ");
+		 email = scanner.nextLine();
+		
+		String emailForm = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+           java.util.regex.Pattern p = java.util.regex.Pattern.compile(emailForm);
+           java.util.regex.Matcher m = p.matcher(email);
+           if( !m.matches()) throw new Exception();
+           break;
+		      }
+		      catch (Exception e)
+		      {
+		          System.out.print("Email format is not valid, please try again!\n");
+		      }
+		  }
+		  while (true);
+		
+		Customer customer = new Customer(name, tax, postcode, shopnumber, email);
+		return customer;
 	}
 	
 }

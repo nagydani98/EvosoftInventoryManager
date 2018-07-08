@@ -104,7 +104,7 @@ public class mainterminal {
 			if (!customerParser.tryToLoad()) 
 				System.out.println("Error loading customer xml, perhaps the file does not exist!\n");
 			
-		String[] ChoseValue= {"List customers","Search for customer","List products","Search for product","Add product to cart","Create shopping cart","Back"};
+		String[] ChoseValue= {"List customers","Search for customer","List products","Search for product","Create order","Back"};
 		menunumber = Terminal.operation.writeDownMenuAndChooseOne(ChoseValue, true);
 		
 		switch (menunumber) {
@@ -139,9 +139,6 @@ public class mainterminal {
 		case 6:					
 			menustate = false;
 			break;
-		case 7:
-			menustate = false;
-			break;
 		default:
 			System.out.println("\nUnrecognised input!\n");
 		}
@@ -174,7 +171,7 @@ public class mainterminal {
 			System.out.println("\nPlease provide a name to search for: ");
 			String name2 = scanner.nextLine();
 			
-			List<Customer> foundCustomers= parser.findCostumers(name2);
+			List<Customer> foundCustomers = parser.findCostumers(name2);
 			System.out.println("Customers with that name: ");
 			if(!foundCustomers.isEmpty()) {
 				for (Customer customer : foundCustomers) {
@@ -186,89 +183,9 @@ public class mainterminal {
 			
 			
 		case 3:
-			System.out.println("Registering new customer, please provide a name: ");
-																					
-			String name3 = scanner.nextLine();
-			
-			System.out.println("Provide a taxnumber:");
-			int tax;
-			
-			do
-			  { 
-			      try {
-			    	  String s = scanner.nextLine();
-			    	  if (s.length()!=8) throw new RuntimeException();
-			    	  tax = Integer.parseInt(s);
-			          break;
-			      }
-			      catch (Exception e)
-			      {
-			          System.out.print("The tax number is not valid, please try again!\n");
-			      }
-			  }
-			  while (true);
-		
-			
-			
-			System.out.println("Provide a postcode: ");
-			int postcode;
-			do
-			  { 
-			      try {
-			          String s = scanner.nextLine();
-			          if (s.length()!=4) throw new RuntimeException();
-			          postcode = Integer.parseInt(s);
-			          break;
-			      }
-			      catch (Exception e)
-			      {
-			          System.out.print("The postcode is not valid, please try again!\n");
-			      }
-			  }
-			  while (true);
-			
-			System.out.println("Provide a shopnumber: ");
-			int shopnumber;
-			do
-			  { 
-			      try {
-			          String s = scanner.nextLine();
-			          shopnumber = Integer.parseInt(s);
-			          break;
-			      }
-			      catch (Exception e)
-			      {
-			          System.out.print("Couldn't parse input, please try again!\n");
-			      }
-			  }
-			  while (true);
-			
-			String email;
-			do
-			  { 
-			      try {
-			System.out.println("Provide an e-mail: ");
-			 email = scanner.nextLine();
-			
-			String emailForm = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-	           java.util.regex.Pattern p = java.util.regex.Pattern.compile(emailForm);
-	           java.util.regex.Matcher m = p.matcher(email);
-	           if( !m.matches()) throw new Exception();
-	           break;
-			      }
-			      catch (Exception e)
-			      {
-			          System.out.print("Email format is not valid, please try again!\n");
-			      }
-			  }
-			  while (true);
-			
-			Customer customer = new Customer(name3, tax, postcode, shopnumber, email);
-			
+			Customer customer = Customer.registerNewCustomer();
 			parser.getLoadedPeople().add(customer);
-			
 			break;
-		
 		
 		case 4:
 			

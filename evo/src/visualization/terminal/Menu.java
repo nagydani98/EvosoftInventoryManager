@@ -30,7 +30,7 @@ public class Menu {
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
 			for(Products SearchedProduct : theList ) {
-				if((SearchedProduct.getName()).matches("(.*)"+criterium+"(.*)")) {
+				if((SearchedProduct.getName()).toLowerCase().matches("(.*)"+criterium+"(.*)")) {
 					RightFindedIndexofList.add(index);
 				}
 				index++;
@@ -41,6 +41,12 @@ public class Menu {
 				return RightFindedIndexofList;
 			}
 		}
+		private static String tryToReplaceAllUnnecessarySpaces(String input) {
+			input.toLowerCase();
+			input.trim().replaceAll(" +", " ");
+			return input;
+		}
+		
 		public static void Display() {
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
@@ -49,9 +55,11 @@ public class Menu {
 			try {
 				if(theList.isEmpty()) throw new NoProductAvailableException();
 				System.out.print("Please write the name of the product: ");
-				String name = Terminal.operation.enterString(4, 15,true);
+				String name = Terminal.operation.enterString(2, 15,true);
 				
+				name = tryToReplaceAllUnnecessarySpaces(name);
 				RightFindedIndexofList = letsfindTheRightElement(name);
+				
 				for(int i : RightFindedIndexofList) {
 					Products local = theList.get(i);
 					local.writeDownTheParameters();
@@ -253,9 +261,6 @@ public class Menu {
 				if(theList.isEmpty()) {
 					continueBuying = false;
 					throw new NoProductAvailableException();
-				}else {
-					System.out.print("Do you want to continue the buying?\n");
-					continueBuying = Terminal.operation.enterBoolean();
 				}
 				
 				int j = 0;

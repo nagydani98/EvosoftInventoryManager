@@ -27,23 +27,23 @@ public class ProductMenu {
 				if(theList.isEmpty()) {
 					throw new NoProductAvailableException();
 				}else {
-					//String[] menuBar = {"Uj adatfelvetele","Termékek kiirása","Termék törlése","Termék keresése","Kilépés"};
-					String[] menuBar = {"Create new product","List products","Delete product","Search for product","Exit"};
+					//String[] menuBar = {"Uj adatfelvetele","Termï¿½kek kiirï¿½sa","Termï¿½k tï¿½rlï¿½se","Termï¿½k keresï¿½se","Kilï¿½pï¿½s"};
+					String[] menuBar = {"List products","Search for product","Create new product","Delete product","Back"};
 					int decision = Terminal.operation.writeDownMenuAndChooseOne(menuBar, true);
 					switch(decision) {
 						case 1:
+							Menu.echoProd.display();
+							break;
+						case 2:
+							Menu.isearch.Display();
+							break;
+						case 3:
 							Menu.inputProd.display();
 							theList = Menu.getList();
 							break;
-						case 2:
-							Menu.echoProd.display();
-							break;
-						case 3:
+						case 4:
 							Menu.iDelete.display();
 							theList = Menu.getList();
-							break;
-						case 4:
-							Menu.isearch.Display();
 							break;
 						case 5:
 							continueTask = false;

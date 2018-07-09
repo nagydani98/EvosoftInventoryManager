@@ -138,8 +138,8 @@ public class CustomerParser {
 	public void printCustomerList() { //automatikusan kiirja az elmentett neveket es adjaszamot
 		if(!this.loadedCustomer.isEmpty())
 			for (int i = 0; i < this.loadedCustomer.size(); i++) {
-				//System.out.println(String.format("%d. %s: %d", i+1, this.loadedCustomer.get(i).getName(), this.loadedCustomer.get(i).getTax()));
-				System.out.println(i+1+"." + this.loadedCustomer.get(i).getName()+ ":" +"\n" +"Tax: " + + this.loadedCustomer.get(i).getTax()+ "\n" +"Email: " + this.loadedCustomer.get(i).getEmail() +"\n" +"Post code: " + this.loadedCustomer.get(i).getPostCode()+"\n" +"Shop number: " + this.loadedCustomer.get(i).getShopNumber()+"\n");
+				System.out.println(String.format("%d. %s: %d", i+1, this.loadedCustomer.get(i).getName(), this.loadedCustomer.get(i).getTax()));
+				
 			}
 	}
 	
@@ -148,7 +148,7 @@ public class CustomerParser {
 	public List<Customer> findCostumers(String name) {
 		List<Customer> foundCustomersList = new ArrayList<Customer>();
 		for (int i = 0; i < loadedCustomer.size(); i++) {
-			if(loadedCustomer.get(i).getName().toLowerCase().contains(name.toLowerCase()))
+			if(loadedCustomer.get(i).getName().contains(name))
 				foundCustomersList.add(loadedCustomer.get(i));
 		}
 		return foundCustomersList;

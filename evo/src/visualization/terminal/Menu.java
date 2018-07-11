@@ -27,13 +27,14 @@ public class Menu {
 		return theList;
 	}
 	
-	public static class isearch {
+	public static class iSearch {
 		private static List<Integer> letsfindTheRightElement(String criterium) throws NoSuchElementException {
 			int index = 0;
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
+			
 			for(Products SearchedProduct : theList ) {
-				if((SearchedProduct.getName()).toLowerCase().matches("(.*)"+criterium+"(.*)")) {
+				if((SearchedProduct.getName()).toLowerCase().matches("(.*)"+criterium+"(.*)")||(SearchedProduct.getType()).toLowerCase().matches("(.*)"+criterium+"(.*)")) {
 					RightFindedIndexofList.add(index);
 				}
 				index++;
@@ -44,9 +45,10 @@ public class Menu {
 				return RightFindedIndexofList;
 			}
 		}
+		
 		private static String tryToReplaceAllUnnecessarySpaces(String input) {
-			input.toLowerCase();
-			input.trim().replaceAll(" +", " ");
+			input = input.toLowerCase();
+			input = input.trim().replaceAll(" +", " ");
 			return input;
 		}
 		
@@ -396,7 +398,7 @@ public class Menu {
 				}
 				
 				}catch(NoProductAvailableException e) {
-					System.out.print("No products available currently, please visit bakc later!\n");
+					System.out.print("No products available currently, please visit back later!\n");
 					e.printStackTrace();
 				}
 			}while(continueBuying);

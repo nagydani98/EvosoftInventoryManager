@@ -212,12 +212,12 @@ public class Xml {
 		      if (dName.equals(productName)) {					//összehasonlitjuk az elemet azzal a értékkel amit keresünk
 		    	  //itt töröljük ki az elemet
 		    	 goods.getParentNode().removeChild(goods);
-		    	 //goods.normalize();
+		    	 goods.normalize();
 		    	 
-		    	 Element pathsElement = (Element)doc.getElementsByTagName( "product" ).item( 0 );
-		    	 /*while( pathsElement.hasChildNodes() )					//kitörli az üres sorokat a product-ból
-		    		    pathsElement.removeChild( pathsElement.getFirstChild() );*/
-		    	 
+		    	 /*Element pathsElement = (Element)doc.getElementsByTagName( "product" ).item( 0 );
+		    	 while( pathsElement.hasChildNodes() )					//kitörli az üres sorokat a product-ból
+		    		    pathsElement.removeChild( pathsElement.getFirstChild() );
+		    	 */
 		    	 if(doc.getElementsByTagName("product").item(0)==null) {
 						Element rootElement = doc.createElement("product");
 						doc.appendChild(rootElement);

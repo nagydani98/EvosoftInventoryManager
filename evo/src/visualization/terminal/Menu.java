@@ -348,7 +348,7 @@ public class Menu {
 				if(account == null)
 					continueBuying = false;
 				
-				if(continueBuying) {
+				if(continueBuying && login) {
 					
 					
 					if(j%5 == 0 || j == 0) {

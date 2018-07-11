@@ -328,7 +328,6 @@ public class Menu {
 			boolean continueBuying = true;
 			CustomerOrder newOrder = null;
 			
-			String name = null;
 			int j = 0;
 			
 			do {
@@ -364,7 +363,7 @@ public class Menu {
 					
 					if(thisProductIWantBuy !=-1 ) {
 						int count = 1;
-						newOrder = new CustomerOrder(name,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
+						newOrder = new CustomerOrder(account,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
 						BuyingList.add(newOrder);
 					
 						System.out.println("Do you want to continue the buying?");

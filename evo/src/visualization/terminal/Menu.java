@@ -327,6 +327,7 @@ public class Menu {
 		public static void display() {
 			boolean continueBuying = true;
 			CustomerOrder newOrder = null;
+			List<CustomerOrder> BuyingList = new ArrayList<CustomerOrder>();
 			
 			int j = 0;
 			
@@ -344,7 +345,7 @@ public class Menu {
 					continueBuying = false;
 				
 				if(continueBuying) {
-					List<CustomerOrder> BuyingList = new ArrayList<CustomerOrder>();
+					
 					
 					if(j%5 == 0 || j == 0) {
 						for (int i = 0; i < theList.size(); i++) {
@@ -377,7 +378,7 @@ public class Menu {
 					}
 					
 					if((!continueBuying && thisProductIWantBuy !=-1) ||(thisProductIWantBuy == -1 && !BuyingList.isEmpty())) {
-						if(BuyingList.size()>1) {
+						if(BuyingList.size()!=1) {
 							System.out.println("Are you sure you want to buy these products?");
 						}else {
 							System.out.println("Are you sure you want to buy this product?");

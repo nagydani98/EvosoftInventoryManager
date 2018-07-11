@@ -57,7 +57,7 @@ public class Menu {
 			
 			try {
 				if(theList.isEmpty()) throw new NoProductAvailableException();
-				System.out.print("Please write the name of the product: ");
+				System.out.print("Please type in the name of the product: ");
 				String name = Terminal.operation.enterString(2, 15,true);
 				
 				name = tryToReplaceAllUnnecessarySpaces(name);
@@ -99,7 +99,7 @@ public class Menu {
 				}
 				
 				//System.out.print("Melyik elemet szeretné törölni:");
-				System.out.print("Which item would you delete(if you write zero, you'll exit):");
+				System.out.print("Which item do you wish to delete(writing zero will make you exit):");
 				int decision = Terminal.operation.enterInteger(0, theList.size()) - 1;
 				if(decision != -1) {
 				//System.out.print("Biztos törölni szeretné az elemet:\n");
@@ -110,20 +110,20 @@ public class Menu {
 						if(Xml.product.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
 							theList.remove(thisProduct);
 							//System.out.print("Törlés sikeres!\n");
-							System.out.print("Delete is successful!\n");
+							System.out.print("Deletion successful!\n");
 						}else {
 						//System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
-						System.out.print("Delete is unsuccesful for this item: "+thisProduct.getName()+"\n");
+						System.out.print("Delete was unsuccesful for this item: "+thisProduct.getName()+"\n");
 						}
 					}
 				
 				if(theList.isEmpty()) {
 					//System.out.println("Nincs több item!")
-					System.out.println("No more item!");
+					System.out.println("There are no more items!");
 					continueDelete = false;
 				}else {
 					//System.out.println("Szeretné folytatni:");
-					System.out.println("Would you like to continue it:");
+					System.out.println("Would you like to continue?:");
 					continueDelete = Terminal.operation.enterBoolean();
 				}
 					j++;
@@ -162,36 +162,36 @@ public class Menu {
 			Products newProduct = null;
 					
 			//System.out.println("Irja be az eszköz nevét: ");
-			System.out.println("Please write the name of the product: ");
+			System.out.println("Please type in the name of the product: ");
 			String name = Terminal.operation.enterString(2,15,true);
 			//System.out.println("Irja be a eszköz gyártóját: ");
-			System.out.println("Please write the name of the producer: ");
+			System.out.println("Please type in the name of the manufacturer: ");
 			String producer = Terminal.operation.enterString(2,15,true);
 			//System.out.println("Irja be a eszköz mennyiségét: ");
-			System.out.println("Please write the amount of the product: ");
+			System.out.println("Please type in the quantity of the product: ");
 			int quantity = Terminal.operation.enterInteger(0,10000);
 			//System.out.println("Irja be a eszköz árát (Ft-ban): ");	//gross, net
-			System.out.println("Please write the net price of the product(in Ft-s): ");
+			System.out.println("Please write the net price of the product(HUF): ");
 			int price = Terminal.operation.enterInteger(0,500000);
 				
 			switch(type) {
 				case 1:
 					//System.out.println("Irja be az eszköz tipusát");
-					System.out.println("Please write type of the product");
+					System.out.println("Please type in the type of the product");
 					String productType = Terminal.operation.enterString(3,15,true);
 					newProduct = new Other(name, producer, quantity, price, productType);
 					break;
 				case 2:
 					//System.out.println("Irja be a core sebesség(Mhz): ");
-					System.out.println("Please write the speed of the core(Mhz): ");
+					System.out.println("Please type in the speed of the core(Mhz): ");
 					int cpuCore = Terminal.operation.enterInteger(100,5000);
 					//System.out.println("Irja be a foglalatot: ");
-					System.out.println("Please write the socket: ");
+					System.out.println("Please type in the socket type: ");
 					String socket = Terminal.operation.enterString(2,10,true);
-					System.out.println("Please write the numbers of the cpu cores: ");
+					System.out.println("Please type in the number of cpu cores: ");
 					int coreNumber = Terminal.operation.enterInteger(1,16);
 					//System.out.println("Irja be a gyártási tekniát(nm): ");
-					System.out.println("Please write the manufacturers technology(nano milimeter): ");
+					System.out.println("Please type in the manufacturer's technology(nanometer): ");
 					int manufactorytech = Terminal.operation.enterInteger(14,34);
 							
 					newProduct = new ComponentsCPU(name, producer, quantity, price, cpuCore, socket, coreNumber, manufactorytech);
@@ -199,19 +199,19 @@ public class Menu {
 					break;
 				case 3:
 					//System.out.println("Irja be a core sebesség(Mhz): ");
-					System.out.println("Please write the speed of the gpu core(Mhz): ");
+					System.out.println("Please type in the speed of the gpu core(Mhz): ");
 					int gpuCore = Terminal.operation.enterInteger(100,5000);
 					//System.out.println("Irja be a Ramot (Mb): ");
-					System.out.println("Please write the size of ram(Mega Byte): ");
+					System.out.println("Please type in the size of ram(in MegaBytes): ");
 					int ram = Terminal.operation.enterInteger(250,8200);
 					//System.out.println("Irja be a memória sebesség: ");
-					System.out.println("Please write the speed of ram: ");
+					System.out.println("Please type in the speed of ram: ");
 					int memoriaSpeed = Terminal.operation.enterInteger(250,8200);
 					//System.out.println("Irja be a memória bussz sebessége ");
-					System.out.println("Please write speed of memory buss: ");
+					System.out.println("Please type in speed of memory bus: ");
 					int busSpeed = Terminal.operation.enterInteger(250,8200);
 					//System.out.println("Irja be a memória bussz tipúsát: ");
-					System.out.println("Please write the type of memory: ");
+					System.out.println("Please type in the memory bus' type: ");
 					String busType= Terminal.operation.enterString(2,10,true);
 							
 					newProduct = new ComponentsGPU(name, producer, quantity, price, gpuCore, ram, memoriaSpeed, busSpeed, busType);
@@ -291,14 +291,15 @@ public class Menu {
 				case 1:
 					int tryCount = 1;
 					do {
-						System.out.println("Enter email:");
+						System.out.println("Please type in the email of the customer:");
 						account = Terminal.operation.enterEmail();
 						if(!checkTheAccount()) {
-							System.out.println("No such email contain in database!");
+							System.out.println("No such user "+ account +" in mail authorization database!");
 							if(tryCount % 3 == 0) {
-								System.out.println("Do you want registered one?");
+								System.out.println("Do you want to make a new account?");
 								if(Terminal.operation.enterBoolean()) {
-									mainterminal.customerRegistration(parser);
+									Customer customer = Customer.registerNewCustomer();
+						 			parser.getLoadedPeople().add(customer);
 									login = true;
 									break;
 								}else {
@@ -315,7 +316,8 @@ public class Menu {
 					}while(true);
 					break;
 				case 2:
-					mainterminal.customerRegistration(parser);
+					Customer customer = Customer.registerNewCustomer();
+		 			parser.getLoadedPeople().add(customer);
 					login = true;
 					break;
 				case 3:
@@ -359,7 +361,7 @@ public class Menu {
 						}
 					}
 					
-					System.out.print("Which product do you want to buy? (if you write zero, you'll exit):");
+					System.out.print("Which product do you want to buy? (writing zero will make you exit):");
 					int thisProductIWantBuy = Terminal.operation.enterInteger(0, theList.size())-1;
 					
 					if(thisProductIWantBuy !=-1 ) {
@@ -367,7 +369,7 @@ public class Menu {
 						newOrder = new CustomerOrder(account,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
 						BuyingList.add(newOrder);
 					
-						System.out.println("Do you want to continue the buying?");
+						System.out.println("Do you want to continue buying?");
 						continueBuying = Terminal.operation.enterBoolean();
 					}else {
 						continueBuying = false;
@@ -394,7 +396,7 @@ public class Menu {
 				}
 				
 				}catch(NoProductAvailableException e) {
-					System.out.print("Please visit again a little bit later!\n");
+					System.out.print("No products available currently, please visit bakc later!\n");
 					e.printStackTrace();
 				}
 			}while(continueBuying);

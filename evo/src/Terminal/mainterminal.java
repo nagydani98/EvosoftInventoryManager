@@ -109,7 +109,7 @@ public class mainterminal {
 		case 6:
 			if(Menu.buying.getLogout()) {
 				Menu.buying.logout();
-				System.out.println("Logout is successfull");
+				System.out.println("Logout successful");
 				menustate = false;
 			}
 		case 7:

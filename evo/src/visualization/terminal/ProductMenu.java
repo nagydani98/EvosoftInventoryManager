@@ -27,7 +27,6 @@ public class ProductMenu {
 				if(theList.isEmpty()) {
 					throw new NoProductAvailableException();
 				}else {
-					//String[] menuBar = {"Uj adatfelvetele","Term�kek kiir�sa","Term�k t�rl�se","Term�k keres�se","Kil�p�s"};
 					String[] menuBar = {"List products","Search for product","Create new product","Delete product","Back"};
 					int decision = Terminal.operation.writeDownMenuAndChooseOne(menuBar, true);
 					switch(decision) {
@@ -35,7 +34,7 @@ public class ProductMenu {
 							Menu.echoProd.display();
 							break;
 						case 2:
-							Menu.isearch.Display();
+							Menu.iSearch.Display();
 							break;
 						case 3:
 							Menu.inputProd.display();

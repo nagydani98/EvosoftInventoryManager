@@ -99,7 +99,7 @@ public class mainterminal {
 			Menu.echoProd.display();
 			break;
 		case 4:
-			Menu.isearch.Display();
+			Menu.iSearch.Display();
 			break;
 		case 5:
 			//cartMenu()

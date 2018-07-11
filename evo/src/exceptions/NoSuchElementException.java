@@ -4,10 +4,10 @@ package exceptions;
 public class NoSuchElementException extends Exception{
 	@Override
 	public String getMessage() {
-		return "Sorry. I didn't find any such product which fit the criteria!";
+		return "Sorry. I haven't found any products which is fit for the criterion!";
 	}
 	@Override
 	public void printStackTrace() {
-		System.err.println("Sorry. I didn't find any such product which fit the criteria!\n");
+		System.err.println("Sorry. I haven't found any products which is fit for the criterion!\n");
 	}
 }

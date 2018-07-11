@@ -41,7 +41,7 @@ public class Terminal{
 					System.out.print("Min value is: "+min+" .Max value is:"+max+"\n");
 					notright = true;
 				}catch(NumberFormatException ex) {
-					ex.fillInStackTrace();
+					System.err.println("You entered bad data formation!" ); 
 				}
 			}while(notright);
 			return theIntegerValue;
@@ -79,6 +79,8 @@ public class Terminal{
 					notRight = true;
 					e.printStackTrace();
 					System.out.print("Min value is: "+min+" .Max value is:"+max+"\n");
+				}catch(NumberFormatException ex) {
+					System.err.println("You entered bad data formation!" ); 
 				}
 			}while(notRight);
 			return theDoubleValue;

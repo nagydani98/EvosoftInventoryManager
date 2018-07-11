@@ -68,7 +68,7 @@ public class Xml {
 					e.printStackTrace();
 				}
 			    String strTemp = streamresult.getWriter().toString();
-			    System.out.println(strTemp);	//kiirja az egész fájl szerekezett a változtatás után
+			    //System.out.println(strTemp);	//kiirja az egész fájl szerekezett a változtatás után
 			    
 			    //itt történik a vissza irás a fájlba
 			    //Nos ezzel a buffer iróval, engedélyezni lehet hogy bármi féle kodolás nélkül vissza irja a magyar ékezetes betûket a fájlba. Bytokat irja vissza. Hiba nélkül. 

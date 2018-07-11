@@ -35,10 +35,13 @@ public class Terminal{
 					if(theIntegerValue>max) {
 						throw new LargerThanMaxNumException();
 					}
-				}catch(NumberFormatException | LessThanMinNumException | LargerThanMaxNumException e) {
+					
+				}catch(LessThanMinNumException | LargerThanMaxNumException e) {
 					e.printStackTrace();
 					System.out.print("Min value is: "+min+" .Max value is:"+max+"\n");
 					notright = true;
+				}catch(NumberFormatException ex) {
+					ex.fillInStackTrace();
 				}
 			}while(notright);
 			return theIntegerValue;
@@ -129,6 +132,26 @@ public class Terminal{
 			newStr = newStr.replace("á", "a").replace("Á", "A").replace("é", "e").replace("É", "E").replace("í", "i").replace("Í", "I").replace("ó", "o").replace("Ó", "O");
 			newStr = newStr.replace("õ", "o").replace("Õ", "o").replace("ü", "u").replace("Ü", "U").replace("Û", "U").replace("û", "U");
 			return newStr;
+		}
+		
+		public static String enterEmail() {
+			String email;
+			do{ 
+			     try {
+			    	 email = scanner.nextLine();
+			
+			    	 String emailForm = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+			    	 java.util.regex.Pattern p = java.util.regex.Pattern.compile(emailForm);
+			    	 java.util.regex.Matcher m = p.matcher(email);
+			    	 if( !m.matches()) throw new Exception();
+			    	 		break;
+			      }
+			     catch (Exception e){
+			          System.out.print("Email format is not valid, please try again!\n");
+			     }
+			}while (true);
+			
+			return email;
 		}
 		
 		//Jelszo beolvasasa igen eclipse terminal alat is, allitolag toketesen megy MAC-on is.

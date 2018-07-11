@@ -22,7 +22,7 @@ public class mainterminal {
 		menuOfItemsAndCusomers();
 	}
 	
-	
+	//
 	
 	//menu methods
 	public static void menuOfItemsAndCusomers() {

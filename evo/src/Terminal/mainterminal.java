@@ -133,7 +133,7 @@ public class mainterminal {
 				System.out.println("Error loading xml, perhaps the file does not exist!\n");
 				
 			System.out.print(
-				"\n1. List cusomers\n2. Search for customer\n3. Create new customer\n4. Delete customer\n5. Back\n Type in the operation's number you wish to perform:");
+				"\n1. List customers\n2. Search for customer\n3. Create new customer\n4. Delete customer\n5. Back\n Type in the operation's number you wish to perform:");
 		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		

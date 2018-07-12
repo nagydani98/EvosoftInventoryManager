@@ -66,9 +66,10 @@ public class Menu {
 				RightFindedIndexofList = letsfindTheRightElement(name);
 				
 				for(int i : RightFindedIndexofList) {
+					if(i == RightFindedIndexofList.get(0)) System.out.print("\n");
 					Products local = theList.get(i);
 					local.writeDownTheParameters();
-					System.out.println("\n");
+					System.out.print("\n");
 				}
 			} catch (NoSuchElementException e) {
 				e.printStackTrace();
@@ -90,18 +91,19 @@ public class Menu {
 				continueDelete = false;
 				if(j%5 == 0 || j == 0) {
 					for (int i = 0; i < theList.size(); i++) {
+						if(i == 0) {
+							System.out.print("\n");
+						}
 						Products thistag = theList.get(i);
 						//System.out.print(i+1+".elem:\n");***********
-						System.out.print(i+1+".item:\n");
+						System.out.println(i+1+".item:");
 						thistag.writeDownTheParameters();
-						if(i!=theList.size()-1) {
-							System.out.println("\n");
-						}
+						System.out.print("\n");
 					}
 				}
 				
 				//System.out.print("Melyik elemet szeretn� t�r�lni:");
-				System.out.print("Which item do you wish to delete(writing zero will make you exit):");
+				System.out.print("Which item do you wish to delete (Press zero to go back):");
 				int decision = Terminal.operation.enterInteger(0, theList.size()) - 1;
 				if(decision != -1) {
 				//System.out.print("Biztos t�r�lni szeretn� az elemet:\n");
@@ -120,11 +122,9 @@ public class Menu {
 					}
 				
 				if(theList.isEmpty()) {
-					//System.out.println("Nincs t�bb item!")
 					System.out.println("There are no more items!");
 					continueDelete = false;
 				}else {
-					//System.out.println("Szeretn� folytatni:");
 					System.out.println("Would you like to continue?:");
 					continueDelete = Terminal.operation.enterBoolean();
 				}
@@ -147,6 +147,10 @@ public class Menu {
 				}
 			
 				for (Products i : theList) {
+					if(i == theList.get(0)) {
+						System.out.print("\n");
+					}
+					
 					i.writeDownTheParameters();
 					System.out.print("\n");
 				}

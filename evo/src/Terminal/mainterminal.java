@@ -36,7 +36,7 @@ public class mainterminal {
 		}
 		
 		do {
-		System.out.print("1. Customers\n2. Items\n3. Shopping\n4. Exit \n Type in the menu's number you wish to enter:");
+		System.out.print("1. Customers\n2. Items\n3. Shopping\n4. Exit \nType in the menu's number you wish to enter:");
 		menunumber = TerminalReaders.readInt();
 		switch (menunumber) {
 		case 1:

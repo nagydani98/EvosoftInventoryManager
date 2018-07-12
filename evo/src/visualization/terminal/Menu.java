@@ -371,15 +371,11 @@ public class Menu {
 					System.out.print("Which product do you want to buy? (Press zero to go back and make order):");
 					int thisProductIWantBuy = Terminal.operation.enterInteger(0, theList.size())-1;
 					
-					if(thisProductIWantBuy !=-1 ) {
+					if(thisProductIWantBuy != -1 ) {
 						int count = 1;
 						newOrder = new CustomerOrder(account,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
 						BuyingList.add(newOrder);
 						continueBuying = true;
-					}
-					
-					if(newOrder != null) {
-						BuyingList.add(newOrder);
 					}
 					
 					if((!continueBuying && thisProductIWantBuy !=-1) ||(thisProductIWantBuy == -1 && !BuyingList.isEmpty())) {

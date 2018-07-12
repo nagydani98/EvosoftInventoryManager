@@ -55,7 +55,7 @@ public class Menu {
 		public static void Display() {
 			List<Integer> RightFindedIndexofList = new ArrayList<Integer>();
 			
-			//System.out.print("Kérem irja be a termék nevét: ");
+			//System.out.print("Kï¿½rem irja be a termï¿½k nevï¿½t: ");
 			
 			try {
 				if(theList.isEmpty()) throw new NoProductAvailableException();
@@ -100,31 +100,31 @@ public class Menu {
 					}
 				}
 				
-				//System.out.print("Melyik elemet szeretné törölni:");
+				//System.out.print("Melyik elemet szeretnï¿½ tï¿½rï¿½lni:");
 				System.out.print("Which item do you wish to delete(writing zero will make you exit):");
 				int decision = Terminal.operation.enterInteger(0, theList.size()) - 1;
 				if(decision != -1) {
-				//System.out.print("Biztos törölni szeretné az elemet:\n");
+				//System.out.print("Biztos tï¿½rï¿½lni szeretnï¿½ az elemet:\n");
 					System.out.print("Are you sure to delete this item:\n");
 				
 					if(Terminal.operation.enterBoolean()) {
 						Products thisProduct = theList.get(decision);
 						if(Xml.product.deleteNote(thisProduct.getName(),thisProduct.getCategorical(),"name")) {
 							theList.remove(thisProduct);
-							//System.out.print("Törlés sikeres!\n");
+							//System.out.print("Tï¿½rlï¿½s sikeres!\n");
 							System.out.print("Deletion successful!\n");
 						}else {
-						//System.out.print("Törlés sikertelen a: "+thisProduct.getName()+"\n");
+						//System.out.print("Tï¿½rlï¿½s sikertelen a: "+thisProduct.getName()+"\n");
 						System.out.print("Delete was unsuccesful for this item: "+thisProduct.getName()+"\n");
 						}
 					}
 				
 				if(theList.isEmpty()) {
-					//System.out.println("Nincs több item!")
+					//System.out.println("Nincs tï¿½bb item!")
 					System.out.println("There are no more items!");
 					continueDelete = false;
 				}else {
-					//System.out.println("Szeretné folytatni:");
+					//System.out.println("Szeretnï¿½ folytatni:");
 					System.out.println("Would you like to continue?:");
 					continueDelete = Terminal.operation.enterBoolean();
 				}
@@ -142,7 +142,7 @@ public class Menu {
 		public static void display() {
 			try {
 				if(theList.isEmpty()) {
-					//System.out.print("Nincs termék!\n");
+					//System.out.print("Nincs termï¿½k!\n");
 					throw new NoProductAvailableException();
 				}
 			
@@ -163,28 +163,28 @@ public class Menu {
 		private static Products readTheNewProducts(int type){
 			Products newProduct = null;
 					
-			//System.out.println("Irja be az eszköz nevét: ");
+			//System.out.println("Irja be az eszkï¿½z nevï¿½t: ");
 			System.out.println("Please type in the name of the product: ");
 			String name = Terminal.operation.enterString(2,15,true);
-			//System.out.println("Irja be a eszköz gyártóját: ");
+			//System.out.println("Irja be a eszkï¿½z gyï¿½rtï¿½jï¿½t: ");
 			System.out.println("Please type in the name of the manufacturer: ");
 			String producer = Terminal.operation.enterString(2,15,true);
-			//System.out.println("Irja be a eszköz mennyiségét: ");
+			//System.out.println("Irja be a eszkï¿½z mennyisï¿½gï¿½t: ");
 			System.out.println("Please type in the quantity of the product: ");
 			int quantity = Terminal.operation.enterInteger(0,10000);
-			//System.out.println("Irja be a eszköz árát (Ft-ban): ");	//gross, net
+			//System.out.println("Irja be a eszkï¿½z ï¿½rï¿½t (Ft-ban): ");	//gross, net
 			System.out.println("Please write the net price of the product(HUF): ");
 			int price = Terminal.operation.enterInteger(0,500000);
 				
 			switch(type) {
 				case 1:
-					//System.out.println("Irja be az eszköz tipusát");
+					//System.out.println("Irja be az eszkï¿½z tipusï¿½t");
 					System.out.println("Please type in the type of the product");
 					String productType = Terminal.operation.enterString(3,15,true);
 					newProduct = new Other(name, producer, quantity, price, productType);
 					break;
 				case 2:
-					//System.out.println("Irja be a core sebesség(Mhz): ");
+					//System.out.println("Irja be a core sebessï¿½g(Mhz): ");
 					System.out.println("Please type in the speed of the core(Mhz): ");
 					int cpuCore = Terminal.operation.enterInteger(100,5000);
 					//System.out.println("Irja be a foglalatot: ");
@@ -192,7 +192,7 @@ public class Menu {
 					String socket = Terminal.operation.enterString(2,10,true);
 					System.out.println("Please type in the number of cpu cores: ");
 					int coreNumber = Terminal.operation.enterInteger(1,16);
-					//System.out.println("Irja be a gyártási tekniát(nm): ");
+					//System.out.println("Irja be a gyï¿½rtï¿½si tekniï¿½t(nm): ");
 					System.out.println("Please type in the manufacturer's technology(nanometer): ");
 					int manufactorytech = Terminal.operation.enterInteger(14,34);
 							
@@ -200,19 +200,19 @@ public class Menu {
 							
 					break;
 				case 3:
-					//System.out.println("Irja be a core sebesség(Mhz): ");
+					//System.out.println("Irja be a core sebessï¿½g(Mhz): ");
 					System.out.println("Please type in the speed of the gpu core(Mhz): ");
 					int gpuCore = Terminal.operation.enterInteger(100,5000);
 					//System.out.println("Irja be a Ramot (Mb): ");
 					System.out.println("Please type in the size of ram(in MegaBytes): ");
 					int ram = Terminal.operation.enterInteger(250,8200);
-					//System.out.println("Irja be a memória sebesség: ");
+					//System.out.println("Irja be a memï¿½ria sebessï¿½g: ");
 					System.out.println("Please type in the speed of ram: ");
 					int memoriaSpeed = Terminal.operation.enterInteger(250,8200);
-					//System.out.println("Irja be a memória bussz sebessége ");
+					//System.out.println("Irja be a memï¿½ria bussz sebessï¿½ge ");
 					System.out.println("Please type in speed of memory bus: ");
 					int busSpeed = Terminal.operation.enterInteger(250,8200);
-					//System.out.println("Irja be a memória bussz tipúsát: ");
+					//System.out.println("Irja be a memï¿½ria bussz tipï¿½sï¿½t: ");
 					System.out.println("Please type in the memory bus' type: ");
 					String busType= Terminal.operation.enterString(2,10,true);
 							
@@ -229,19 +229,19 @@ public class Menu {
 					
 			while(menuPoint != 4) {
 				menuPoint = 0;
-				//String menu[] = {"Egyébb termék","CPU ","GPU ","kilépés"};
+				//String menu[] = {"Egyï¿½bb termï¿½k","CPU ","GPU ","kilï¿½pï¿½s"};
 				String menu[] = {"Other product","CPU ","GPU ","exit"};
 				menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menu,false);
 				if(menuPoint != 4) {
 					listOfNewProducts.add(readTheNewProducts(menuPoint));
 						
-					//String menutwo[] = {"Folytatja","kilépés"};
+					//String menutwo[] = {"Folytatja","kilï¿½pï¿½s"};
 					String menutwo[] = {"Continue","exit"};
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menutwo,false);
 				}
 				
 				if((menuPoint == 2)||(menuPoint==4 && !listOfNewProducts.isEmpty())) {
-					//String menuthree[] = {"Mentés","Kilépés mentés nélkül"};
+					//String menuthree[] = {"Mentï¿½s","Kilï¿½pï¿½s mentï¿½s nï¿½lkï¿½l"};
 					String menuthree[] = {"Save","exit without save"};
 					
 					menuPoint = Terminal.operation.writeDownMenuAndChooseOne(menuthree,false);
@@ -284,7 +284,7 @@ public class Menu {
 		}
 		
 		private static void accountPart() {
-			String [] menu = {"Login","Registration","exit"};
+			String [] menu = {"Choose costumer","Add new costumer","Exit"};
 			int choosed = Terminal.operation.writeDownMenuAndChooseOne(menu, false);
 			CustomerParser parser = new CustomerParser();
 			
@@ -298,7 +298,7 @@ public class Menu {
 						if(!checkTheAccount()) {
 							System.out.println("No such user "+ account +" in mail authorization database!");
 							if(tryCount % 3 == 0) {
-								System.out.println("Do you want to make a new account?");
+								System.out.println("Do you want to add a new customer?");
 								if(Terminal.operation.enterBoolean()) {
 									Customer customer = Customer.registerNewCustomer();
 						 			parser.getLoadedPeople().add(customer);
@@ -363,7 +363,7 @@ public class Menu {
 						}
 					}
 					
-					System.out.print("Which product do you want to buy? (writing zero will make you exit):");
+					System.out.print("Which product do you want to buy? (Press zero to go back):");
 					int thisProductIWantBuy = Terminal.operation.enterInteger(0, theList.size())-1;
 					
 					if(thisProductIWantBuy !=-1 ) {

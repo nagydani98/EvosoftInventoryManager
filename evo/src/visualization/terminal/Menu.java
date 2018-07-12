@@ -359,12 +359,12 @@ public class Menu {
 					if(j%5 == 0 || j == 0) {
 						for (int i = 0; i < theList.size(); i++) {
 							Products thistag = theList.get(i);
-							//System.out.print(i+1+".elem:\n");***********
-							System.out.print(i+1+".item:\n");
+							
+							System.out.print("\n");
+							System.out.println(i+1+".item:\n");
 							thistag.writeDownTheParameters();
-							if(i==theList.size()-1) {
-								System.out.println("\n");
-							}
+							if(i == theList.size()-1)
+								System.out.print("\n");
 						}
 					}
 					
@@ -394,7 +394,7 @@ public class Menu {
 							Xml.buyerOrder.writer(BuyingList);
 						}
 						
-					}
+					}else if(thisProductIWantBuy == -1 && BuyingList.isEmpty()) continueBuying = false;
 					j++;
 				}
 				

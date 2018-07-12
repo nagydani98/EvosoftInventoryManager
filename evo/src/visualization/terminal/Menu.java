@@ -292,8 +292,9 @@ public class Menu {
 			switch(choosed) {
 				case 1:
 					int tryCount = 1;
+					int i = 3;
 					do {
-						System.out.println("Please type in the email of the customer:");
+						System.out.println("Please type in the email of the customer - "+i+" :");
 						account = Terminal.operation.enterEmail();
 						if(!checkTheAccount()) {
 							System.out.println("No such user "+ account +" in mail authorization database!");
@@ -312,7 +313,7 @@ public class Menu {
 							login = true;
 							break;
 						}
-					
+						i--;
 						tryCount++;
 						
 					}while(true);
@@ -363,18 +364,14 @@ public class Menu {
 						}
 					}
 					
-					System.out.print("Which product do you want to buy? (Press zero to go back):");
+					System.out.print("Which product do you want to buy? (Press zero to go back and make order):");
 					int thisProductIWantBuy = Terminal.operation.enterInteger(0, theList.size())-1;
 					
 					if(thisProductIWantBuy !=-1 ) {
 						int count = 1;
 						newOrder = new CustomerOrder(account,theList.get(thisProductIWantBuy).getName(),count,theList.get(thisProductIWantBuy).getPrice());
 						BuyingList.add(newOrder);
-					
-						System.out.println("Do you want to continue buying?");
-						continueBuying = Terminal.operation.enterBoolean();
-					}else {
-						continueBuying = false;
+						continueBuying = true;
 					}
 					
 					if(newOrder != null) {
@@ -387,7 +384,7 @@ public class Menu {
 						}else {
 							System.out.println("Are you sure you want to buy this product?");
 						}
-						
+						continueBuying = false;
 						if(Terminal.operation.enterBoolean()) {
 							Xml.buyerOrder.open();
 							Xml.buyerOrder.writer(BuyingList);

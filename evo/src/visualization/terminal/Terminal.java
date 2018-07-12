@@ -38,7 +38,7 @@ public class Terminal{
 					
 				}catch(LessThanMinNumException | LargerThanMaxNumException e) {
 					e.printStackTrace();
-					System.out.print("Min value is: "+min+" .Max value is:"+max+"\n");
+					System.out.print("Min value is: "+min+". Max value is: "+max+"\n");
 					notright = true;
 				}catch(NumberFormatException ex) {
 					System.err.println("You entered bad data formation!" ); 
@@ -78,7 +78,7 @@ public class Terminal{
 				}catch(InputMismatchException | LessThanMinNumException | LargerThanMaxNumException e) {
 					notRight = true;
 					e.printStackTrace();
-					System.out.print("Min value is: "+min+" .Max value is:"+max+"\n");
+					System.out.print("Min value is: "+min+". Max value is: "+max+"\n");
 				}catch(NumberFormatException ex) {
 					System.err.println("You entered bad data formation!" ); 
 				}
@@ -113,7 +113,7 @@ public class Terminal{
 					if(isItContainSpecialCharacter(theStringInput)) {
 						System.out.print("Unfortunately, the Hungarian special characters aren't available here!\n");
 						theStringInput = enterStringWithoutSpecialChar(theStringInput);
-						System.out.print("Date loaded in this form:"+theStringInput+"\n");
+						System.out.print("Date loaded in this form: "+theStringInput+"\n");
 						return theStringInput;
 					}
 					return theStringInput;

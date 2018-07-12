@@ -361,7 +361,7 @@ public class Menu {
 							Products thistag = theList.get(i);
 							
 							System.out.print("\n");
-							System.out.println(i+1+".item:\n");
+							System.out.print(i+1+".item:\n");
 							thistag.writeDownTheParameters();
 							if(i == theList.size()-1)
 								System.out.print("\n");
